@@ -17,18 +17,17 @@ export default function Login() {
     const { user, dispatch } = useAuth();
 
     useEffect(() => {
-        if (user) {
-            if (user.role === "claims") {
-                navigate("/userpanel");
-            } else {
-                navigate("/adminpanel");
-            }
-        }
+        // if (user) {
+        //     if (user.role === "claims") {
+        //         navigate("/userpanel");
+        //     } else {
+        //         navigate("/adminpanel");
+        //     }
+        // }
     })
 
     const login = (e) => {
         e.preventDefault();
-        {/** 
         axios.post("/login", {
             email: email,
             password: password
@@ -46,23 +45,22 @@ export default function Login() {
             setError("Check password or email");
             console.log(err.message)
         });
-    */}
     }
 
     return (
         <div className="pageContainer">
-          <div className='containerHolder'>
-            <div className='profileicon'>
-             <FaRegUserCircle size="120px" color="#000"  />
-            </div>
-            {error && <div className="error">{error}</div>}
-            <div className='loginForm'>
-                <form className='form' onSubmit={login} >
-                    <input type="text" placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
-                    <input type="password" placeholder='Password' value={password} onChange={(e) => { setPassword(e.target.value) }} required />
-                    <button type="submit" className='btn' >Login</button>
-                </form>
-            </div>
+            <div className='containerHolder'>
+                <div className='profileicon'>
+                    <FaRegUserCircle size="120px" color="#000" />
+                </div>
+                {error && <div className="error">{error}</div>}
+                <div className='loginForm'>
+                    <form className='form' onSubmit={login} >
+                        <input type="text" placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
+                        <input type="password" placeholder='Password' value={password} onChange={(e) => { setPassword(e.target.value) }} required />
+                        <button type="submit" className='btn' >Login</button>
+                    </form>
+                </div>
             </div>
             {/* {
                 <Formik
@@ -81,6 +79,6 @@ export default function Login() {
 
                 </Formik>
             } */}
-         </div>
+        </div>
     )
 }
