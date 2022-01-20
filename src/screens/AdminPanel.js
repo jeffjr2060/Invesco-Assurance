@@ -13,6 +13,8 @@ export default function AdminPanel() {
     const [department, setDepartment] = useState('');
     const [empId, setEmpId] = useState('');
     const [users, setUsers] = useState([]);
+    const [error, setError] = useState();
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         if (user.role === "claims") {
@@ -28,7 +30,7 @@ export default function AdminPanel() {
             .catch((error) => {
                 console.log(error);
             })
-    }, [])
+    }, [refresh]);
 
     const handleModal = () => {
         setShowModal(!showModal);
@@ -43,9 +45,11 @@ export default function AdminPanel() {
             is_head: false,
             empId: empId
         }).then((response) => {
-            console.log(response.data)
+            console.log(response.data);
+            setRefresh((prevState) => !prevState);
         }).catch((err) => {
-            console.log(err)
+            console.log(err.message);
+            setError("Check Email");
         })
     }
 
@@ -72,7 +76,10 @@ export default function AdminPanel() {
                     <button className='btn' onClick={handleModal}>Close</button>
                     <div className="loginContainer">
                         <div className='loginForm'>
-
+                            {
+                                error &&
+                                <div className='error'>{error}</div>
+                            }
                             <form className='form' onSubmit={registerEmployee}>
                                 <input type="text" placeholder='Enter employee name' value={name} onChange={(e) => { setName(e.target.value) }} required />
                                 <input type="email" placeholder='Enter your employee email address' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
