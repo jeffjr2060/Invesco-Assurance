@@ -4,6 +4,9 @@ import { useAuth } from './context-stores/AuthContext';
 import Login from './screens/Login';
 import Adminpanel from './screens/AdminPanel';
 import Userpanel from './screens/UserPanel';
+import Branchhome from './screens/Branch/BranchScreens/branchhome';
+import Claimform from './screens/Branch/BranchScreens/Claimform';
+import Claimnotification from './screens/Branch/BranchScreens/Claimnotification';
 
 export default function RoutesComponent() {
     const { user } = useAuth();
@@ -33,6 +36,9 @@ export default function RoutesComponent() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/userpanel" element={<Userpanel />} />
                 <Route path="/adminpanel" element={<Adminpanel />} />
+                <Route path="/branchhome" element={<Branchhome />} />
+                <Route path="/claimform" element={<Claimform  />} />
+                <Route path="/claimnotification" element={<Claimnotification />} />
             </Routes>
         </>
     )

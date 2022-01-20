@@ -14,6 +14,7 @@ export default function AdminPanel() {
     const [empId, setEmpId] = useState('');
     const [users, setUsers] = useState([]);
 
+  
     useEffect(() => {
         if (user.role === "claims") {
             navigate("/userpanel")
