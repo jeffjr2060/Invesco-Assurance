@@ -14,7 +14,7 @@ export default function RoutesComponent() {
 
     return (
         <>
-            <Routes>
+            {/* <Routes>
                 {!user &&
                     <>
                         <Route exact path="/" element={<Login />} />
@@ -32,17 +32,18 @@ export default function RoutesComponent() {
                     )
                 }
                 <Route path="*" element={<Navigate to={user ? "/userpanel" : "/"} />} />
-            </Routes>
+            </Routes> */}
 
-            {/* <Routes>
+            <Routes>
                 <Route exact path="/" element={<Login />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/userpanel" element={<Userpanel />} />
                 <Route path="/adminpanel" element={<Adminpanel />} />
                 <Route path="/branchhome" element={<Branchhome />} />
-                <Route path="/claimform" element={<Claimform  />} />
+                <Route path="/claimform" element={<Claimform />} />
                 <Route path="/claimnotification" element={<Claimnotification />} />
             </Routes>
+
         </>
     )
 }

@@ -16,11 +16,6 @@ export default function Login() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const { user, dispatch } = useAuth();
-    const arr = [{
-        policy_no: 07777,
-        period_from: new Date(8, 3, 2010)
-
-    }];
 
     useEffect(() => {
         if (user) {
