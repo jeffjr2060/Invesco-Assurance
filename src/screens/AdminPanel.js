@@ -16,6 +16,7 @@ export default function AdminPanel() {
     const [error, setError] = useState();
     const [refresh, setRefresh] = useState(false);
 
+  
     useEffect(() => {
         if (user.role === "claims") {
             navigate("/userpanel")
