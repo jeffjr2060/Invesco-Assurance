@@ -16,7 +16,7 @@ export default function AdminPanel() {
     const [error, setError] = useState();
     const [refresh, setRefresh] = useState(false);
 
-  
+
     useEffect(() => {
         if (user.role === "claims") {
             navigate("/userpanel")
@@ -52,6 +52,7 @@ export default function AdminPanel() {
             console.log(err.message);
             setError("Check Email");
         })
+        handleModal();
     }
 
     return (
@@ -66,63 +67,55 @@ export default function AdminPanel() {
                     {user && <button className='logoutBtn' onClick={logout}>signout</button>}
                 </div>
             </nav>
-
             <div className='addBtn'>
-                <button className='registerBtn' onClick={handleModal}>Register Employee</button>
+                <button className='registerBtn' onClick={handleModal}>Register User</button>
             </div>
-
             {
                 showModal &&
-                <div className='modal'>
-                    <button className='btn' onClick={handleModal}>Close</button>
-                    <div className="loginContainer">
-                        <div className='loginForm'>
-                            {
-                                error &&
-                                <div className='error'>{error}</div>
-                            }
-                            <form className='form' onSubmit={registerEmployee}>
-                                <input type="text" placeholder='Enter employee name' value={name} onChange={(e) => { setName(e.target.value) }} required />
-                                <input type="email" placeholder='Enter your employee email address' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
-                                <input type="text" placeholder='Enter employee department' value={department} onChange={(e) => { setDepartment(e.target.value) }} required />
-                                <input type="text" placeholder='Enter employee id' value={empId} onChange={(e) => { setEmpId(e.target.value) }} required />
-                                <button type="submit" className='btn' >submit</button>
-                            </form>
+                <div className='adminmodal'>
 
-                        </div>
-                    </div>
+                    <button className="close" onClick={handleModal}>X</button>
+
+                    <form className='form' onSubmit={registerEmployee}>
+                        <input type="text" placeholder='Enter employee name' value={name} onChange={(e) => { setName(e.target.value) }} required />
+                        <input type="email" placeholder='Enter your employee email address' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
+                        <input type="text" placeholder='Enter employee department' value={department} onChange={(e) => { setDepartment(e.target.value) }} required />
+                        <input type="text" placeholder='Enter employee id' value={empId} onChange={(e) => { setEmpId(e.target.value) }} required />
+                        <button className="submit" type="submit" >submit</button>
+                    </form>
+
                 </div>
+
             }
-
-            {/**the table to display users */}
-            <div className="userTable">
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <td>Name</td>
-                            <td>email</td>
-                            <td>Department</td>
-                            <td>Employee id</td>
-                            <td>Status</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            users.map(user => {
-                                return (
-                                    <tr key={user.id}>
-                                        <td>{user.full_name}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.department}</td>
-                                        <td>{user.emp_id}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+            <div className="adminContainerHolder">
+                {/**the table to display users */}
+                <div className="userTable">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>email</td>
+                                <td>Department</td>
+                                <td>Employee id</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                users.map(user => {
+                                    return (
+                                        <tr key={user.id}>
+                                            <td>{user.full_name}</td>
+                                            <td>{user.email}</td>
+                                            <td>{user.department}</td>
+                                            <td>{user.emp_id}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
         </div>
     )
 }

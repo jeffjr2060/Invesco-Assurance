@@ -20,7 +20,7 @@ export default function Login() {
     useEffect(() => {
         if (user) {
             if (user.role === "claims") {
-                navigate("/userpanel");
+                navigate("/claimform");
             } else {
                 navigate("/adminpanel");
             }
@@ -40,7 +40,7 @@ export default function Login() {
             if (user.role === "admin") {
                 navigate("/adminpanel");
             } else {
-                navigate("/userpanel");
+                navigate("/claimform");
             }
         }).catch(err => {
             setError("Check password or email");
@@ -51,18 +51,19 @@ export default function Login() {
     return (
         <div className="pageContainer">
             <div className='containerHolder'>
-                <div className='profileicon'>
-                    <FaRegUserCircle size="120px" color="#000" />
-                </div>
                 {error && <div className="error">{error}</div>}
                 <div className='loginForm'>
+                    <div className='profileicon'>
+                        <FaRegUserCircle size="120px" color="#000" />
+                    </div>
                     <form className='form' onSubmit={login} >
                         <input type="text" placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
                         <input type="password" placeholder='Password' value={password} onChange={(e) => { setPassword(e.target.value) }} required />
-                        <button type="submit" className='btn' >Login</button>
+                        <Link className="link" to='/resetpassword'>Forgot Password</Link>
+                        <button className="submit" type="submit">Login</button>
                     </form>
-                </div>'['
-                <Link to='/resetpassword'>Forgot Password</Link>
+                </div>
+
             </div>
             {/* {
                 <Formik

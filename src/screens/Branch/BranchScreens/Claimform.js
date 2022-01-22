@@ -96,17 +96,28 @@ function Claimform() {
 
 
   return (
-    <div container>
+    <div className='container'>
       <div className='containerHolder'>
         <Formik>
-          <Form>
+          <Form className='formContainer'>
+          <div className='firstColumn'>
+            <div className='left'>
             <label htmlFor="person">Who is reporting</label>
             <Field id="person " as="select" name="Person">
               <option value="Insured">Insured</option>
               <option value="ThirdParty">Third Party</option>
               <option value="Agent">Agent</option>
             </Field>
-            <div>POLICY</div>
+            </div>
+          <div className='center'>
+          <label htmlFor="dol">Enter Date of Loss</label>
+                 <input
+                    id="dol"
+                    type="date"
+                    name='DOL'
+                  />
+            </div> 
+          <div className='Right'>       
             <label htmlFor="carreg"> Enter the Car Registration</label>
             <input
               id="carreg"
@@ -115,12 +126,22 @@ function Claimform() {
               value={carRegistration}
               onChange={handleCarRegInput}
             />
-            <label htmlFor="expiry">Expiry Date</label>
+            </div>
+            </div>
+         <div>POLICY DETAILS</div>
+           <div className='secondColumn'>
+            <label htmlFor="expiry">Policy Expiry Date</label>
             <input
               id="expiry"
               name="Expiry"
               type="Date"
             />
+          <label htmlFor='carreg'>Car Registration</label>
+                  <input 
+                    id='carreg'
+                    type='text'
+                    name='Carreg'
+          />
             <label htmlFor="hirepurchase">Name of hire purchase of finance company</label>
             <input
               id="hirepurchase"
@@ -128,7 +149,15 @@ function Claimform() {
               type="text"
               value={hirePurchaseCompany}
             />
-            <div>POLICY HOLDER</div>
+          </div>
+          <div className='firstColumn'>
+          <label htmlFor="tellno"> Policy Holder's Tell No.</label>
+            <input
+              id="tellno"
+              name="Tell"
+              type="number"
+              value={tellno}
+            />
             <label htmlFor="name">Enter Name</label>
             <input
               id="name"
@@ -136,13 +165,7 @@ function Claimform() {
               type="text"
               value={name}
             />
-            <label htmlFor="tellno">Tell No.</label>
-            <input
-              id="tellno"
-              name="Tell"
-              type="number"
-              value={tellno}
-            />
+          
             <label htmlFor="address">Address</label>
             <input
               id="address"
@@ -157,8 +180,9 @@ function Claimform() {
               type="text"
               value={occupation}
             />
+            </div> 
             {/**VEHICLE */}
-            <div>VEHICLE</div>
+            <div className='firstColumn'>
             <label htmlFor="make">Make & Model</label>
             <input
               id="make"
@@ -180,6 +204,8 @@ function Claimform() {
               type="date"
               value={manufactureYear}
             />
+            </div>
+            <div className='secondColumn'>
             <label htmlFor="regno">Reg. No. of Vehicle</label>
             <input
               id="regno"
@@ -201,6 +227,8 @@ function Claimform() {
               type="text"
               value={trailerReg}
             />
+            </div>
+            <div className='firstColumn'>
             <label htmlFor="capacity">Trailer Carrying Capacity</label>
             <input
               id="capacity"
@@ -222,6 +250,8 @@ function Claimform() {
               type="text"
               value={ownersAddress}
             />
+            </div>
+            <div className='firstColumn'>
             <label htmlFor="Chassis">Chassis No</label>
             <input
               id="chassis"
@@ -240,6 +270,7 @@ function Claimform() {
                 validateClaim(e.target.value);
               }}
             />
+            </div>
             {/**Vehicle ends */}
             {/**Use start */}
             <div>USE</div>
@@ -446,4 +477,3 @@ function Claimform() {
 }
 
 export default Claimform
-

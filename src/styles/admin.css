@@ -3,112 +3,107 @@
     min-height: 100vh;
     min-width: 100vw;
     background-color: #fff;
-    overflow-x: hidden;
+    flex-direction:column;
+    justify-content: flex-start;
+   
 }
-.navbar{
+.adminContainerHolder{
+    display: flex;
+    width:100%;
+    height:80vh;
+    align-items: center;
+    justify-content: center;
+}
+nav{
   display: flex;
-  width: 100%;
+  width:100%;
   height: 80px;
   flex-direction: row;
   justify-content: space-between;
  align-items: center;
- background-color: #008080;
+ background-color: green;
 
-}
-.email{
-    position: absolute;
-    margin-left:-18%;
-    margin-top: -0.4%;
-    color: #fff;
-}
-.addBtn{
-    display: flex;
-    position: absolute;
-    margin-left: 86%;
-    top: 85px;
-  
-}
-.registerBtn{
-    align-items: center;
-    justify-content: center;
-    font-size: large;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-}
-.logoutBtn{
-    align-items: center;
-    justify-content: center;
-    font-size: large;
-    border: none;
-    background-color: transparent;
-    color: #fff;
-    margin-left:-30%;
-}
-.userTable{
-    display: block;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    justify-content: center;  
-    position: absolute;
-    top:20%;
 }
 .table{
-    display: block;
+    display:block;
+    width: 100%;
+    height: 100%;
+}
+.userTable{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width:600px;
+    height:70%;
+    border: none;
+    overflow-x: auto;  
+}
+.logoutBtn{
+    display: flex;
+    background-color: transparent;
+    border: none;
+   
+}
+.email{
+    display: none;
 }
 
 
-.modal {
-    position: fixed; /* Sit on top of the page content */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
-}
+ th, td {
+    border: 1px solid black;
+    width:100%
+  }
 
-
+.adminmodal{
+    display: flex;
+    width: 600px;
+    height: 400px;
+    background-color: #000;
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 10%;
+    align-items: center;
+    justify-content: center;
+    
+  }
+ 
 .pageContainer{
     display: flex;
     min-width: 100vh;
     min-height: 100vh;
+    background: #00792D;
+    backdrop-filter: blur(9px);
     align-items: center;
     justify-content: center;
-    background: #192A39;
-    backdrop-filter: blur(9px);
 }
 .containerHolder{
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    width: 80%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     align-items:center;
 }
 .profileicon{
     display:flex;
-    width:150px;
-    height:150px;
+    width:100px;
+    height:100px;
     border-radius: 120px;
-    background-color: #fff;
+    background-color: #00792D;
     align-items: center;
     justify-content: center;
-    z-index: 2; 
+    margin-top: 20px;
+    z-index: 5px; 
 }
 .loginForm{
     display: flex;
+    flex-direction: column;
     width: 300px;
     height: 400px;
-    background: linear-gradient(180deg, #7BC7E4 32.29%, rgba(255, 255, 255, 0.53) 91.67%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #000;
+    box-shadow: 0px 10px 8px 8px rgba(0, 0, 0, 0.25);
     border-radius: 35px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .form{
     display: block;
@@ -116,28 +111,77 @@
     justify-content: center;
     width: 280px;
     height: 300px;
-    margin-top: 105px;
-}
+   }
 input{
     display: block;
     width: 100%;
     height: 44px;
     border-radius: 8px;
     outline: none;
-    border: #fff;
+    border-color: green;
     background: rgba(12, 13, 13, 0.69);
     margin-top: 15px;
     align-items: center;
     justify-content: center;
     color:#fff;
 }
-.btn{
-    width: 122px;
-    height: 42.47px; 
-    background: rgba(0, 0, 0, 0.46);
-    border-radius: 10px;
-    outline:none;
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 60px;
     margin-top: 10px;
-    margin-left: 75px;
-    color: #fff; 
+    margin-left: 55px;
+    border-radius: 8px;
+    outline: none;
+   
+}
+.close{
+    display: flex;
+    position: absolute;
+    margin-top:-60%;
+    margin-left: 87%;
+    width: 20px;
+    height: 20px;
+   border:none;
+   outline: none;
+    background-color: transparent;
+}
+.submit{
+    background-color:transparent;
+    border-color: green;
+    color:green;
+}
+.link{
+    color: aqua;
+}
+.passwordContainer{
+    display:flex;
+    min-height: 100vh;
+    min-width: 100vw;
+    justify-content: center;
+    align-items: center;
+    background-color: #00792D;
+}
+.sub{
+    color: #fff;
+    border-color: black;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-left: 30px;
+
+}
+.Response{
+    display: flex;
+    position: absolute;
+    width: 200px;
+    height: 350px;
+    background-color:#fff;
+    align-items: center;
+    justify-content: center;
 }
