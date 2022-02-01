@@ -3,7 +3,7 @@ import React, { useContext, useReducer } from 'react';
 const AuthContext = React.createContext();
 
 export function useAuth() {
-    return useContext(AuthContext);
+    return useContext(AuthContext); 
 }
 
 const userReducer = (state, action) => {

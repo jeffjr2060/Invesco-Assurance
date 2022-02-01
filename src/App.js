@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import AuthContextProvider from './context-stores/AuthContext';
+import ClaimFormContext from './context-stores/CliamContext';
 import RoutesComponent from './RoutesComponent';
 
 function App() {
@@ -8,7 +9,9 @@ function App() {
     <div className="App">
       <Router>
         <AuthContextProvider>
-          <RoutesComponent />
+          <ClaimFormContext>
+            <RoutesComponent />
+          </ClaimFormContext>
         </AuthContextProvider>
       </Router>
     </div>

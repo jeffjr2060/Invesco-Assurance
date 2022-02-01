@@ -7,6 +7,7 @@ import Userpanel from './screens/UserPanel';
 import Branchhome from './screens/Branch/BranchScreens/branchhome';
 import Intimationhome from './screens/Intimation/Screens/home';
 import Claimform from './screens/Branch/BranchComponent/Claimform';
+import ClaimNotification from './screens/Branch/BranchScreens/Claimnotification';
 
 
 
@@ -15,6 +16,8 @@ import Claimdetails from './screens/Branch/BranchComponent/claimdetails';
 import Test from './screens/Branch/BranchScreens/test';
 import UploadDocument from './screens/Branch/BranchScreens/Uploaddocument';
 import ClaimManager from './screens/Branch/BranchComponent/home';
+import Claimform1 from './screens/Branch/Claimform1';
+import ClaimForm2 from './screens/Branch/ClaimForm2';
 
 export default function RoutesComponent() {
     const { user } = useAuth();
@@ -49,14 +52,15 @@ export default function RoutesComponent() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/userpanel" element={<Userpanel />} />
                 <Route path="/adminpanel" element={<Adminpanel />} />
-                <Route path="/branchhome" element={<Branchhome />} />
+                <Route path="/claimform1" element={<Claimform1 />} />
+                <Route path="/claimform2" element={<ClaimForm2 />} />
+                {/* <Route path="/branchhome" element={<Branchhome />} />
                 <Route path="/claimdetails" element={<Claimdetails />} />
-                <Route path="/intimation" element={<Intimationhome   />} />
+                <Route path="/intimation" element={<Intimationhome />} />
                 <Route path="/claimform" element={<Claimform />} />
-                <Route path="/uploadDocument" element={<UploadDocument   />} />
-                <Route path="/claimmanager" element={<UploadDocument   />} />
-                
-               
+                <Route path="/uploadDocument" element={<UploadDocument />} />
+                <Route path="/claimmanager" element={<UploadDocument />} />
+                <Route path="/claimnotification" element={<ClaimNotification />} /> */}
             </Routes>
 
         </>
