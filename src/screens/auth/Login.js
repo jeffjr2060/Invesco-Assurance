@@ -6,6 +6,7 @@ import { useAuth } from '../../context-stores/AuthContext';
 import '../../styles/admin.css';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const axios = require('axios');
@@ -18,13 +19,13 @@ export default function Login() {
     const { user, dispatch } = useAuth();
 
     useEffect(() => {
-        if (user) {
-            if (user.role === "claims") {
-                navigate("/claimform");
-            } else {
-                navigate("/adminpanel");
-            }
-        }
+        // if (user) {
+        //     if (user.role === "claims") {
+        //         navigate("/claimform");
+        //     } else {
+        //         navigate("/adminpanel");
+        //     }
+        // }
     })
 
     const login = (e) => {
@@ -54,7 +55,13 @@ export default function Login() {
                 {error && <div className="error">{error}</div>}
                 <div className='loginForm'>
                     <div className='profileicon'>
-                        <FaRegUserCircle size="120px" color="#000" />
+                        <AccountCircleIcon 
+                         sx={{
+                            fontSize: "70px",color:"white"
+
+                         }}
+                        
+                        />
                     </div>
                     <form className='form' onSubmit={login} >
                         <input type="text" placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} required />

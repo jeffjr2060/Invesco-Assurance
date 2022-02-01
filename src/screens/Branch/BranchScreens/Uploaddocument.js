@@ -3,11 +3,12 @@ import Container  from '@mui/material/Container';
 import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import Drawerbranch from '../subComponent/drawer';
-import Searchbar from '../subComponent/searchbar';
 
 
-function Branchhome() {
+
+
+
+function UploadDocument() {
   return<div>
   <Container
   sx={{
@@ -16,29 +17,33 @@ function Branchhome() {
     minHeight:'100vh',
     background: '#ece5dd',
   }}>
-    <Drawerbranch />
-
+    
+{/* search bar */}
  <Box
  sx={{
    display:"flex",
    width:"100%",
    mt:"40px"
 
- }}
-
- >
-
-  <Searchbar />
+ }}>
+ 
 </Box>
- <TextField 
-  label="Filled"
-  variant="filled"
 
-  />
+{/* intimation Tickets */}
+ <Box
+ sx={{
+   display:"flex",
+   width:"100%",
+   mt:"180px",
+   ml:"-75%",
+ }}>
+  
+
+ </Box>
+ 
 
   </Container>
   </div>;
 }
 
-export default Branchhome;
-
+export default UploadDocument;
