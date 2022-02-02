@@ -104,7 +104,7 @@ function ClaimNotification() {
   const [visibility, setvisibility] = useState('');
   const [conditions, setconditions] = useState('');
   const [lights, setlights] = useState('');
-  const [warning, setWarning] = useState('');
+  const [warning_signs, setwarning_signs] = useState('');
   const [estimated_speed, setestimated_speed] = useState('');
   const [weather_condition, setweather_condition] = useState('');
   const [police_investigation, setpolice_investigation] = useState('');
@@ -155,6 +155,9 @@ function ClaimNotification() {
         insurers_address: insurers_address,
         drivers_policy_no: drivers_policy_no,
 
+        // number add
+      
+
         //  Accident_details states
         date_of_accident: date_of_accident,
         time_of_accident: time_of_accident,
@@ -163,6 +166,7 @@ function ClaimNotification() {
         visibility: visibility,
         conditions: conditions,
         lights: lights,
+        warning_signs:warning_signs,
         estimated_speed: estimated_speed,
         weather_condition: weather_condition,
         police_investigation: police_investigation,

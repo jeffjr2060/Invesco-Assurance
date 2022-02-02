@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -15,6 +15,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Switch from '@mui/material/Switch';
 import Slide from '@mui/material/Slide';
 import Paper from '@mui/material/Paper';
+import axios from 'axios';
 
 import Claimdetails from './claimdetails';
 
@@ -25,38 +26,38 @@ const style = {
   left: '45%',
   transform: 'translate(-50%, -50%)',
   width: '60%',
-  height:'70%',
+  height: '70%',
   bgcolor: 'background.paper',
-  borderRadius:'10px',
+  borderRadius: '10px',
   boxShadow: 24,
   p: 4,
-  display:'flex',
-  flexDirection:'row',
-  justifyContent:'flex-start',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
 };
 
 const instructions = (
   <Paper sx={{ m: 1, width: 100, height: 100 }} elevation={4}>
     <Box component="svg" sx={{ width: 100, height: 100 }}>
       <Box sx={{
-        display:'flex',
+        display: 'flex',
       }}
-      
+
       />
-      
+
     </Box>
   </Paper>
 );
 
 function Notes() {
- const[title, settitle] =useState ('');
- const[notes,setnotes] =useState ('');
+  const [title, settitle] = useState('');
+  const [notes, setnotes] = useState('');
 
- const handletitle = (e) =>{
-  settitle(e.target.value);
- } 
+  const handletitle = (e) => {
+    settitle(e.target.value);
+  }
 
-  const handleNotes = (e) =>{
+  const handleNotes = (e) => {
     setnotes(e.target.value);
   }
 
@@ -64,13 +65,25 @@ function Notes() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-const [state, setState] = React.useState({
-  Jeff: false,
-  Brian: false,
-  Steph: false,
-  Joy: false,
-  Chris: false,
-  Christine: false,
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('/addnote', {
+      title: title,
+      content: notes
+    }
+    ).then(resp => {
+      console.log(resp.data);
+      handleClose();
+    }).catch(err => console.log(err.message));
+  }
+
+  const [state, setState] = React.useState({
+    Jeff: false,
+    Brian: false,
+    Steph: false,
+    Joy: false,
+    Chris: false,
+    Christine: false,
   });
 
   const handleChange = (event) => {
@@ -86,27 +99,62 @@ const [state, setState] = React.useState({
   const handlechange = () => {
     setChecked((prev) => !prev);
   };
-  
+
   return <div>
-      <Box 
+    <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        width:'80%',
-        ml:"-12px",
-        height:''
+        width: '80%',
+        ml: "-12px",
+        height: ''
       }}
-      >
-        <div>
+    >
+      <div>
         <Button
           onClick={handleOpen}
-           sx={{ ml: 23 }}
-            >+ Add Notes</Button>
-        </div>
-    
+          sx={{ ml: 23 }}
+        >+ Add Notes</Button>
+        <Box
+           sx={{ 
+             display: 'flex',
+             flexDirection: 'column',
+             justifyContent:'flex-start',
+             width: '100%',
+             height:'300px',
+           }}             
+        >
+          {/* Title */}
+          <Box 
+          sx={{ 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height:"30%",
+            width:"100%",
+          }}>
+        {/* notes / message */}
+          </Box>
+          <Box 
+          sx={{ 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height:"70%",
+            width:"100%",
+          }}>
 
-      </Box>
-      <div style={{alignItem:'center', justifyContent:'center'}}>
+        {/* notes */}
+        
+          </Box>
+
+        </Box>
+
+      </div>
+
+
+    </Box>
+    <div style={{ alignItem: 'center', justifyContent: 'center' }}>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -117,104 +165,105 @@ const [state, setState] = React.useState({
         BackdropProps={{
           timeout: 500,
         }}
-      
+
       >
         <Fade in={open}>
           <Box sx={style}>
-             <Box
-             sx={{
-               display:'flex',
-               flexDirection:'column',
-               justifyContent:'flex-start',
-               width:'60%',
-               height:'100%',
-             }}>
-               <Typography sx={{
-                 fontWeight:'900',
-                 fontSize:'20px'
-               }}>Add Note</Typography>
-          <Box
-              sx={{
-              width: 500,
-              maxWidth: '100%',
-              marginTop: '5%',
-              }}>
-            <TextField fullWidth 
-            label="Note Title" 
-            id="fullWidth"
-            value={title}
-            onChange={handletitle}
-            />
-          </Box> 
             <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                width: '60%',
+                height: '100%',
+              }}>
+              <Typography sx={{
+                fontWeight: '900',
+                fontSize: '20px'
+              }}>Add Note</Typography>
+              <Box
                 sx={{
-                width: 500,
-                 maxWidth: '100%',
-                 marginTop: '5%',
-             }}>
-       <TextareaAutosize
-           fullWidth
-           label="Note"
-           value={notes}
-           onChange={handleNotes}
-          style={{ width: "100%", height: 250, fontSize: '24px' }}
-         />
-        </Box> 
-      </Box>
-      <Box 
-      sx={{ 
-        display: 'flex',
-        mt:'45px'
+                  width: 500,
+                  maxWidth: '100%',
+                  marginTop: '5%',
+                }}>
+                <TextField fullWidth
+                  label="Note Title"
+                  id="fullWidth"
+                  value={title}
+                  onChange={handletitle}
+                />
+              </Box>
+              <Box
+                sx={{
+                  width: 500,
+                  maxWidth: '100%',
+                  marginTop: '5%',
+                }}>
+                <TextareaAutosize
+                  fullWidth
+                  label="Note"
+                  value={notes}
+                  onChange={handleNotes}
+                  style={{ width: "100%", height: 250, fontSize: '24px' }}
+                />
+                <Button onClick={handleSubmit} variant="outlined">Attach</Button>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                mt: '45px'
 
-     }}>
-      <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-        <FormLabel component="legend">Assign responsibility</FormLabel>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox checked={Jeff} onChange={handleChange} name="Jeff" />
-            }
-            label="Jeff"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={Brian} onChange={handleChange} name="Brian" />
-            }
-            label="Brian"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={Steph} onChange={handleChange} name="Steph" />
-            }
-            label="Steph"
-          />
-           <FormControlLabel
-            control={
-              <Checkbox checked={Joy} onChange={handleChange} name="Joy" />
-            }
-            label="Joy"
-          />
-           <FormControlLabel
-            control={
-              <Checkbox checked={Chris} onChange={handleChange} name="Chris" />
-            }
-            label="Chris"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={Christine} onChange={handleChange} name="Christine" />
-            }
-            label="Christine"
-          />
-        </FormGroup>
-      </FormControl>
-     
-    </Box>
-    </Box>
-  </Fade>
-  </Modal>
-</div>
-</div>;
+              }}>
+              <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+                <FormLabel component="legend">Assign responsibility</FormLabel>
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked={Jeff} onChange={handleChange} name="Jeff" />
+                    }
+                    label="Jeff"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked={Brian} onChange={handleChange} name="Brian" />
+                    }
+                    label="Brian"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked={Steph} onChange={handleChange} name="Steph" />
+                    }
+                    label="Steph"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked={Joy} onChange={handleChange} name="Joy" />
+                    }
+                    label="Joy"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked={Chris} onChange={handleChange} name="Chris" />
+                    }
+                    label="Chris"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked={Christine} onChange={handleChange} name="Christine" />
+                    }
+                    label="Christine"
+                  />
+                </FormGroup>
+              </FormControl>
+
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
+    </div>
+  </div>;
 }
 
 export default Notes;

@@ -54,13 +54,13 @@ export default function RoutesComponent() {
                 <Route path="/adminpanel" element={<Adminpanel />} />
                 <Route path="/claimform1" element={<Claimform1 />} />
                 <Route path="/claimform2" element={<ClaimForm2 />} />
-                {/* <Route path="/branchhome" element={<Branchhome />} />
                 <Route path="/claimdetails" element={<Claimdetails />} />
+                <Route path="/claimnotification" element={<ClaimNotification />} />
                 <Route path="/intimation" element={<Intimationhome />} />
                 <Route path="/claimform" element={<Claimform />} />
+                <Route path="/branchhome" element={<Branchhome />} />
                 <Route path="/uploadDocument" element={<UploadDocument />} />
                 <Route path="/claimmanager" element={<UploadDocument />} />
-                <Route path="/claimnotification" element={<ClaimNotification />} /> */}
             </Routes>
 
         </>

@@ -39,7 +39,7 @@ export default function Login() {
             dispatch({ type: 'ADD_USER', user: user });
             console.log(user.role === "admin");
             if (user.role === "admin") {
-                navigate("/adminpanel");
+                navigate("branchhome");
             } else {
                 navigate("/claimform");
             }
@@ -55,12 +55,12 @@ export default function Login() {
                 {error && <div className="error">{error}</div>}
                 <div className='loginForm'>
                     <div className='profileicon'>
-                        <AccountCircleIcon 
-                         sx={{
-                            fontSize: "70px",color:"white"
+                        <AccountCircleIcon
+                            sx={{
+                                fontSize: "70px", color: "white"
 
-                         }}
-                        
+                            }}
+
                         />
                     </div>
                     <form className='form' onSubmit={login} >

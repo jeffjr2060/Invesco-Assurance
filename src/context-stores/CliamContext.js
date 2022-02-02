@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Controller, useForm } from "react-hook-form";
 
 const ClaimFormContext = React.createContext();
 
@@ -8,6 +9,8 @@ export function useClaimFormContext() {
 
 export default function ClaimFormContextProvider({ children }) {
     // const [policy_data, setPolicy] = useState({});
+    //react hook form
+    const { handleSubmit, reset, control } = useForm();
 
     // policy_Holders Details
     const [holders_name, setholders_name] = useState('');
@@ -77,32 +80,6 @@ export default function ClaimFormContextProvider({ children }) {
             setowners_name(policy.Name);
             setowners_address(policy.Address);
             setchasis_no(policy.chasisno);
-
-            // setPolicy({
-            //     // policy holder
-            //     holders_name: holders_name,
-            //     tell_no: tell_no,
-            //     holders_address: holders_address,
-            //     occupation: holders_occupation,
-
-            //     // policy
-            //     policy_number: policy_number,
-            //     expiry_date: expiry_date,
-            //     hire_purchase_company: hire_purchase_company,
-
-            //     //vehicle DETAILS
-            //     make_model: make_model,
-            //     hp_cc: hp_cc,
-            //     manufacture_year: manufacture_year,
-            //     vehicle_registration: vehicle_registration,
-            //     vehicle_capacity: vehicle_capacity,
-            //     trailer_registration: trailer_registration,
-            //     trailer_capacity: trailer_capacity,
-            //     owners_name: owners_name,
-            //     owners_address: owners_address,
-            //     chassis_no: chasis_no,
-            // })
-            // console.log(policy_data);
         } else {
             setholders_name('');
             sethire_purchase_company('');
@@ -125,8 +102,13 @@ export default function ClaimFormContextProvider({ children }) {
         }
     }
 
+    const onSubmit = (data) => {
+        console.log({ holders_name, tell_no, ...data });
+    }
+
     const value = {
         autofillfunc: autofill,
+
         // policy holder
         holders_name: holders_name,
         tell_no: tell_no,
@@ -149,6 +131,11 @@ export default function ClaimFormContextProvider({ children }) {
         owners_name: owners_name,
         owners_address: owners_address,
         chassis_no: chasis_no,
+
+        //React hook form
+        control: control,
+        handleSubmit: handleSubmit,
+        onSubmit: onSubmit
     }
 
     return (
