@@ -39,9 +39,9 @@ export default function Login() {
             dispatch({ type: 'ADD_USER', user: user });
             console.log(user.role === "admin");
             if (user.role === "admin") {
-                navigate("branchhome");
+                navigate("/branchhome");
             } else {
-                navigate("/claimform");
+                navigate("/intimation");
             }
         }).catch(err => {
             setError("Check password or email");
@@ -64,8 +64,8 @@ export default function Login() {
                         />
                     </div>
                     <form className='form' onSubmit={login} >
-                        <input type="text" placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
-                        <input type="password" placeholder='Password' value={password} onChange={(e) => { setPassword(e.target.value) }} required />
+                        <input style={{ "color": "black" }} type="text" placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} required />
+                        <input style={{ "color": "black" }} type="password" placeholder='Password' value={password} onChange={(e) => { setPassword(e.target.value) }} required />
                         <Link className="link" to='/resetpassword'>Forgot Password</Link>
                         <button className="submit" type="submit">Login</button>
                     </form>

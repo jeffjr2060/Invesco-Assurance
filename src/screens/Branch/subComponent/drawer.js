@@ -17,15 +17,17 @@ import HomeIcon from '@mui/icons-material/Home';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Claimbtn from './claimformpopup';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 300;
 
 
-  
+
 
 function Drawerbranch(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -33,61 +35,76 @@ function Drawerbranch(props) {
 
   const drawer = (
     <div>
-    
-      <Toolbar 
-       sx={{ 
-        background:"#fff",
-        height:"100px",
-        background:"#075e54",
 
-    }}>
+      <Toolbar
+        sx={{
+          background: "#fff",
+          height: "100px",
+          background: "#075e54",
+
+        }}>
         <Typography>Invesco Logo</Typography>
-    </Toolbar>
-   
-    
-
-{/* drawer items */}
- <Box
- sx={{
-     display:"block",
-     width:"100%",
-     height:"90vh",
-     background:"#075e54",
- }}>
-
-     {/* list */}
-     <List>
-        {['CLAIM FORM', 'CLAIM NOTIFICATION','REPORTED CLAIM', 'UPLOAD DOCUMENTS',].map((text, index) => (
-          <ListItem button key={text} >
-            <ListItemText primary={text}
-             sx={{
-                 color:"#FBCD99",
-             }} />
-          </ListItem>
-        ))}
-      </List>
+      </Toolbar>
 
 
-   {/* username and profile */}
- 
- <Box
- sx={{
-     display:"flex",
-     width:"100%",
-     height:"200px",
-     mt:"52vh",
-     alignItems:"center",
-     justifyContent:"center",
- }}>
 
- </Box>
-      
+      {/* drawer items */}
+      <Box
+        sx={{
+          display: "block",
+          width: "100%",
+          height: "90vh",
+          background: "#075e54",
+        }}>
 
- </Box>
+        {/* list */}
+        <List>
+          {
+            ['CLAIM FORM', 'CLAIM NOTIFICATION', 'REPORTED CLAIM', 'UPLOAD DOCUMENTS',].map((text, index) => {
+              if (text === "CLAIM FORM") {
+                return (
+                  <ListItem button key={text} onClick={() => navigate("/claimform1")} >
+                    <ListItemText primary={text}
+                      sx={{
+                        color: "#FBCD99",
+                      }} />
+                  </ListItem>
+                )
+              }
+              return (
+                <ListItem button key={text} >
+                  <ListItemText primary={text}
+                    sx={{
+                      color: "#FBCD99",
+                    }} />
+                </ListItem>
+              )
+            }
+            )
+          }
+        </List>
 
-  {/*Drawer Items end  */}
 
-   
+        {/* username and profile */}
+
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            height: "200px",
+            mt: "52vh",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
+
+        </Box>
+
+
+      </Box>
+
+      {/*Drawer Items end  */}
+
+
 
 
 
@@ -107,30 +124,30 @@ function Drawerbranch(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-       
+
         }}
       >
-        <Toolbar 
-        sx={{ 
-            display:"flex",
-            background:"#fff",
-            height:"100px",
+        <Toolbar
+          sx={{
+            display: "flex",
+            background: "#fff",
+            height: "100px",
             elevation: 4,
-            alignItems:"center",
-            justifyContent:"center",
-             }}>
-                 
-                 
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
+
+
         </Toolbar>
-      
-             
-       
+
+
+
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 },  }}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }, }}
         aria-label="mailbox folders"
-        
+
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
@@ -144,7 +161,7 @@ function Drawerbranch(props) {
           sx={{
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-           
+
           }}
         >
           {drawer}
@@ -152,7 +169,7 @@ function Drawerbranch(props) {
         <Drawer
           variant="permanent"
           sx={{
-           
+
             display: { xs: 'none', sm: 'block' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
@@ -161,7 +178,7 @@ function Drawerbranch(props) {
           {drawer}
         </Drawer>
       </Box>
-      
+
     </Box>
   );
 }
