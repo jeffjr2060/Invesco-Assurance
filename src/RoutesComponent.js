@@ -61,6 +61,7 @@ export default function RoutesComponent() {
                 <Route path="/branchhome" element={<Branchhome />} />
                 <Route path="/uploadDocument" element={<UploadDocument />} />
                 <Route path="/claimmanager" element={<UploadDocument />} />
+                <Route path="/form" element={<Form />} />
             </Routes>
 
         </>
