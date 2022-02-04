@@ -70,9 +70,36 @@ function Drawerbranch(props) {
                       }} />
                   </ListItem>
                 )
-              }
+                // claim Notification
+              } else if (text === "CLAIM NOTIFICATION") {
+              
+                return (
+                  <ListItem button key={text} onClick={() => navigate("/claimnotification")} >
+                    <ListItemText primary={text}
+                      sx={{
+                        color: "#FBCD99",
+                      }} />
+                  </ListItem>
+                )
+              
+              // reported ClaiM
+              } else if (text === "REPORTED CLAIM")  {
+              
               return (
-                <ListItem button key={text} >
+                <ListItem button key={text} onClick={() => navigate("/form")}>
+                  <ListItemText primary={text}
+                    sx={{
+                      color: "#FBCD99",
+                    }} />
+                </ListItem>
+              )
+              
+            
+              }
+              // upload document
+              else{
+              return (
+                <ListItem button key={text}  onClick={() => navigate("/uploadDocument")}>
                   <ListItemText primary={text}
                     sx={{
                       color: "#FBCD99",
@@ -80,6 +107,7 @@ function Drawerbranch(props) {
                 </ListItem>
               )
             }
+          }
             )
           }
         </List>
