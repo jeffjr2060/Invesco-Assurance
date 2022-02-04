@@ -131,6 +131,19 @@ function Claimdetails() {
       variant="permanent"
       anchor="left"
     >
+
+    <Box
+      sx={{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        width:"100%",
+      }}
+     >
+
+    </Box>
+
+
     </Drawer>
     <Container
       sx={{
