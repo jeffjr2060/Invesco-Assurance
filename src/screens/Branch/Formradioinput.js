@@ -17,9 +17,12 @@ export default function FormRadioInput({ name, control, label}) {
                 value={value} onChange={onChange}
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group">
+                name="row-radio-buttons-group"
+                >
+                
                 <FormLabel
-                    id="demo-row-radio-buttons-group-label">
+                    id="demo-row-radio-buttons-group-label"
+                   >
                     {label}
                 </FormLabel>
                 <FormControlLabel value="Yes" control={<Radio />} label="Yes" />

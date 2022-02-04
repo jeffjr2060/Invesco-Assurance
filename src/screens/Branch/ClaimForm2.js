@@ -5,6 +5,9 @@ import FormTextInput from './Formtextinput';
 import FormRadioInput from './Formradioinput';
 import FormDateInput from './Formdateinput';
 import FormInputDropdown from './Formselectinput';
+import  Box  from '@mui/material/Box';
+import { Typography } from '@mui/material';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 
 const options = [
@@ -23,24 +26,66 @@ export default function ClaimForm2() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form 
+            onSubmit={handleSubmit(onSubmit)}
+             style={{
+              display:"flex",
+              flexDirection:"column",
+             }}
+            >
                 {/* Use of vehicle */}
+                <Box
+                sx={{
+                    display:"flex",
+                    flexDirection:"column",
+                    width:"85%",
+                    ml:"8%",
+                    mt:"2%",
+                }}>
                 <FormTextInput name={"use_of_vehicle"} control={control} label={"Use of vehicle"} />
+                </Box>
 
-                {/* Commercial vehicle details*/}
-                <FormTextInput name={"goods_carried"} control={control} label={"Description of goods carried"} />
-                <FormTextInput name={"owner_of_goods"} control={control} label={"Name of owner of goods"} />
-                <FormTextInput name={"trailer_attached"} control={control} label={"Was trailer attached"} />
-                <FormTextInput name={"load_weight"} control={control} label={"Weight of load on vehicle"} />
-                <FormTextInput name={"trailer_weight"} control={control} label={"Weight of load on trailer"} />
-
-                {/* Driver details */}
+    {/* Commercial vehicle details*/}
+    <Box
+    sx={{
+        display:"flex",
+        flexDirection:"column",
+        width:"85%",
+        ml:"8%",
+        mt:"5%",
+    }}
+    >
+        <Typography sx={{fontSize:"30px",ml:"-5%"}}>Commercial vehicle</Typography>
+        <FormTextInput name={"goods_carried"} control={control} label={"Description of goods carried"} />
+        <FormTextInput name={"owner_of_goods"} control={control} label={"Name of owner of goods"} />
+        <FormTextInput name={"trailer_attached"} control={control} label={"Was trailer attached"} />
+        <FormTextInput name={"load_weight"} control={control} label={"Weight of load on vehicle"} />
+        <FormTextInput name={"trailer_weight"} control={control} label={"Weight of load on trailer"} />
+    </Box>
+    {/* Driver details */}
+            <Box
+            sx={{
+                display:"flex",
+                flexDirection:"column",
+                width:"85%",
+                ml:"8%",
+                mt:"5%",
+            }}>
+                <Typography sx={{fontSize:"30px",ml:"-5%"}}>Driver Details</Typography>
                 <FormTextInput name={"drivers_name"} control={control} label={"Name"} />
                 <FormTextInput name={"drivers_occupation"} control={control} label={"Occupation"} />
                 <FormDateInput name={"drivers_dob"} control={control} label="Actual Date of Birth" />
                 <FormTextInput name={"drivers_po_box"} control={control} label={"P.O Box"} />
                 <FormTextInput name={"drivers_po_code"} control={control} label={"Code"} />
                 <FormTextInput name={"drivers_tell_no"} control={control} label={"Tell no"} />
+            <Box 
+            sx={{
+                display:"flex",
+                flexDirection:"column",
+                width:"85%",
+              
+                mt:"5%",
+            }}>
                 <FormRadioInput name={"employed_by_policyholder"} control={control} label="Is he/she employed by you?" />
                 <FormTextInput name={"service_duration"} control={control} label={"How long has he/she been employed by you?"} />
                 <FormRadioInput name={"permission"} control={control} label="Was he/she driveing with your permission?" />
@@ -48,6 +93,7 @@ export default function ClaimForm2() {
                 <FormRadioInput name={"accident_blame"} control={control} label="Was he/she in a way to blame for the accident?" />
                 <FormRadioInput name={"accident_liability"} control={control} label="Did he/she admit liability for the accident?" />
                 <FormRadioInput name={"prev_accidents"} control={control} label="Has he/she had any previous accidents?" />
+                </Box>
                 <FormTextInput name={"prev_accident_details"} control={control} label="If so how many and approximate date" />
                 <FormTextInput name={"prev_convictions"} control={control} label="Has he/she had any conviction for any offence in connection with any motor Vehicle or any Charges pending ?" />
                 <FormTextInput name={"prev_conviction_details"} control={control} label="if so, give details including dates" />
@@ -58,13 +104,54 @@ export default function ClaimForm2() {
                 <FormTextInput name={"insurers_name"} control={control} label="Name of insurer" />
                 <FormTextInput name={"insurers_address"} control={control} label="Address of insurer" />
                 <FormTextInput name={"drivers_policy_no"} control={control} label="Driver's Policy No." />
-
+            </Box>
                 {/* Plan of accident  */}
-                <textarea name={" drivers_statement"} ref={ref} label="Statement by the driver" />
+                <Box
+                sx={{
+                    display:"flex",
+                    flexDirection:"column",
+                    width:"85%",
+                    ml:"8%",
+                    mt:"2%",
+                }}>
+                <Typography sx={{fontSize:"30px",ml:"-5%"}}>Stament by the Driver</Typography>
+                <TextareaAutosize
+                  fullWidth
+                  label="Note"
+                  name={" drivers_statement"}
+                  control={control} ref={ref}
+                  style={{ width: "100%", height: 250, fontSize: '24px' }}
+                />
                 {/* to do */}
-                <textarea name={"policy_holders_statement"} control={control} ref={ref} label="Statement by the Owner or Policy Holder" />
-
+                <Box sx={{mt:"2%"}}>
+                <Typography >Stament by the Ownerr</Typography>
+                <TextareaAutosize
+                  fullWidth
+                  label="Note"
+                  name={"policy_holders_statement"}
+                  control={control} ref={ref}
+                  style={{ width: "100%", height: 250, fontSize: '24px' }}
+                />
+               </Box>
+                </Box>
                 {/* Accident details */}
+                <Box
+                sx={{
+                    display:"flex",
+                    flexDirection:"column",
+                    width:"85%",
+                    ml:"8%",
+                    mt:"2%",
+                }}>
+                 <Typography>Accident details</Typography> 
+                 <Box
+                  sx={{
+                    display:"flex",
+                    flexDirection:"column",
+                    width:"100%",
+                    mt:"2%",
+                }}
+                 >  
                 <FormDateInput name={"date_of_accident"} control={control} label="Date" />
                 <FormDateInput name={"time_of_accident"} control={control} label="Time" />
                 <FormTextInput name={"place"} control={control} label="place" />
@@ -80,8 +167,18 @@ export default function ClaimForm2() {
                 <FormTextInput name={"police_officers_station"} control={control} label="To which police Station Was the accident reported ?" />
                 <FormTextInput name={"police_officers_no"} control={control} label="Police officer's number" />
                 <FormTextInput name={"police_stations"} control={control} label="To which police station was the accident reported" />
-
+                </Box>  
+                </Box>
                 {/* Damage to insured Vehicle */}
+                <Box
+                sx={{
+                    display:"flex",
+                    flexDirection:"column",
+                    width:"85%",
+                    ml:"8%",
+                    mt:"2%",
+                }}>
+                <Typography>Damage to insured Vehicle</Typography> 
                 <FormTextInput name={"apparent_damages"} control={control} label="State briefly apparent damage" />
                 <FormTextInput name={"garage_name"} control={control} label="Name of the garage of my choice" />
                 <FormTextInput name={"garage_address"} control={control} label="Garage Address" />
@@ -89,12 +186,22 @@ export default function ClaimForm2() {
                 <FormRadioInput name={"vehicle_still_used"} control={control} label="Is the vehicle still in Use?" />
                 <FormTextInput name={"inspection_location"} control={control} label="Where can it be Inspected" />
                 <FormDateInput name={"inspection_date"} control={control} label="When can it be Inspected?" />
-
+                </Box>
                 {/*  */}
-
-
-
-                <input type="submit" value="Submit" />
+<Box 
+sx={{
+    ml:"45%", 
+}}> 
+<input
+    type="submit"
+    value="Submit" 
+    style={{
+        display:"flex",
+        width:"150px",
+        height:"50px",
+        background:"#075e54",
+ }}/>
+</Box>
             </form>
         </div>
     );
