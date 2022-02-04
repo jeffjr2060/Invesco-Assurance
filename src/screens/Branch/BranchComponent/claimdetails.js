@@ -189,11 +189,23 @@ function Claimdetails() {
               {claim_data &&
                 <div styles={{
                   display: 'flex',
-                  
+
                 }}>
-                  <h1>{claim_data.policy_number}</h1>
-                  <h1>{claim_data.car_reg_no}</h1>
-                  <h1>{claim_data.policy_holders_name}</h1>
+                  <Box sx={{ padding: '20px' }}
+                  >
+                    <Typography>Policy Number: {claim_data.policy_number}</Typography>
+                    <Typography>Vehicle registration: {claim_data.car_reg_no}</Typography>
+                    <Typography>Policy Holder: {claim_data.policy_holders_name}</Typography>
+                    <Typography>Address: Nakuru</Typography>
+                    <Typography>Tellno: 0722774531</Typography>
+                    <Typography>cc: 1500</Typography>
+                    <Typography>Occupation: Businessman</Typography>
+                    <Typography>Hire purchase company: T.B.A</Typography>
+                    <Typography>Make: TOYOTA HIACE</Typography>
+                    <Typography>Carrying Capacity: 14</Typography>
+                    <Typography>TrailerRegno: N/A</Typography>
+                    <Typography>chasisno: SV30-0169266</Typography>
+                  </Box>
                 </div>
               }
             </Box>

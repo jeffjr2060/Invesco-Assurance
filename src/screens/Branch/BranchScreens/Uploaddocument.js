@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import axios from 'axios';
+import { useClaimFormContext } from '../../../context-stores/CliamContext';
 
 
 
@@ -13,6 +14,7 @@ function UploadDocument() {
   const [file_type, setFileType] = useState('Police Abstract');
   const [file, setFile] = useState();
   const [files_uploaded, setFilesUploaded] = useState([]);
+  const { claim_id } = useClaimFormContext();
 
   const fileChangeHandler = (e) => {
     setFile(e.target.files[0]);
@@ -25,10 +27,13 @@ function UploadDocument() {
     formdata.append("file_type", file_type);
     formdata.append("file", file);
     setFilesUploaded(prevState => [...prevState, file_type]);
-
-    axios.post("/file-upload/1", formdata).then((response) => {
-      console.log(response.data);
-    })
+    const path = "/file-upload/" + claim_id
+    console.log(path);
+    // if(claim_id) {
+    //   axios.post(`/file-upload/${claim_id}`, formdata).then((response) => {
+    //     console.log(response.data);
+    //   })
+    // }
   }
 
   return <div>

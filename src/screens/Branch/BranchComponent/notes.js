@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -52,6 +52,7 @@ const instructions = (
 function Notes() {
   const [title, settitle] = useState('');
   const [notes, setnotes] = useState('');
+  const [note, setnote] = useState(null);
 
   const handletitle = (e) => {
     settitle(e.target.value);
@@ -76,6 +77,13 @@ function Notes() {
       handleClose();
     }).catch(err => console.log(err.message));
   }
+
+  useEffect(() => {
+    axios.get('/addnote').then(resp => {
+      console.log(resp.data);
+      setnote(resp.data);
+    }).catch(err => console.log(err.message));
+  }, []);
 
   const [state, setState] = React.useState({
     Jeff: false,
@@ -116,36 +124,45 @@ function Notes() {
           sx={{ ml: 23 }}
         >+ Add Notes</Button>
         <Box
-           sx={{ 
-             display: 'flex',
-             flexDirection: 'column',
-             justifyContent:'flex-start',
-             width: '100%',
-             height:'300px',
-           }}             
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            width: '100%',
+            height: '300px',
+          }}
         >
           {/* Title */}
-          <Box 
-          sx={{ 
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height:"30%",
-            width:"100%",
-          }}>
-        {/* notes / message */}
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: "30%",
+              width: "100%",
+            }}>
+            {/* notes / message */}
           </Box>
-          <Box 
-          sx={{ 
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height:"70%",
-            width:"100%",
-          }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: "70%",
+              width: "100%",
+            }}>
 
-        {/* notes */}
-        
+            {/* notes */}
+            <Box>
+              {note &&
+                note.map(data => (
+                  <Box>
+                    <h1>Title: {data.title}</h1>
+                    <h1>Content: {data.content}</h1>
+                  </Box>
+                ))
+              }
+            </Box>
           </Box>
 
         </Box>

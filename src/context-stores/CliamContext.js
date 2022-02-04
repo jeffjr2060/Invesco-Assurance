@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Controller, useForm } from "react-hook-form";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ClaimFormContext = React.createContext();
 
@@ -11,6 +12,7 @@ export function useClaimFormContext() {
 export default function ClaimFormContextProvider({ children }) {
     // const [policy_data, setPolicy] = useState({});
     //react hook form
+    const [claim_id, setClaimId] = useState(null);
     const { handleSubmit, reset, control, ref } = useForm({
         defaultValues: {
             accident_blame: "",
@@ -92,6 +94,7 @@ export default function ClaimFormContextProvider({ children }) {
     const [policy_number, setpolicy_number] = useState('');
     const [expiry_date, setexpiry_date] = useState('');
     const [hire_purchase_company, sethire_purchase_company] = useState('');
+    const navigate = useNavigate();
 
     //vehicles details
     const [make_model, setmake_model] = useState('');
@@ -200,7 +203,13 @@ export default function ClaimFormContextProvider({ children }) {
             chassis_no: chasis_no,
         }
         console.log(payload);
-        axios.post('/newclaim', payload).then(response => console.log(response.data))
+        axios.post('/newclaim', payload).then(response => {
+            let data = response.data
+            console.log(data.Claim_id);
+            setClaimId(data.Claim_id);
+        });
+        alert("Form upload successful");
+        navigate('/branchhome');
     }
 
     const clearStates = () => {
@@ -255,7 +264,8 @@ export default function ClaimFormContextProvider({ children }) {
         control: control,
         handleSubmit: handleSubmit,
         onSubmit: onSubmit,
-        ref: ref
+        ref: ref,
+        claim_id: claim_id
     }
 
     return (
