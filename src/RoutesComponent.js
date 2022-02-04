@@ -14,10 +14,11 @@ import ClaimNotification from './screens/Branch/BranchScreens/Claimnotification'
 import Form from './screens/Branch/BranchScreens/form';
 import Claimdetails from './screens/Branch/BranchComponent/claimdetails';
 import Test from './screens/Branch/BranchScreens/test';
-import UploadDocument from './screens/Branch/BranchScreens/Uploaddocument';
+import UploadDocument from './screens/Branch/FileUpload/Uploaddocument';
 import ClaimManager from './screens/Branch/BranchComponent/home';
 import Claimform1 from './screens/Branch/Claimform1';
 import ClaimForm2 from './screens/Branch/ClaimForm2';
+import ReportedClaim from './screens/Branch/BranchComponent/ReportedClaim';
 
 export default function RoutesComponent() {
     const { user } = useAuth();
@@ -62,6 +63,7 @@ export default function RoutesComponent() {
                 <Route path="/uploadDocument" element={<UploadDocument />} />
                 <Route path="/claimmanager" element={<UploadDocument />} />
                 <Route path="/form" element={<Form />} />
+                <Route path="/reportedclaim" element={<ReportedClaim />} />
             </Routes>
 
         </>

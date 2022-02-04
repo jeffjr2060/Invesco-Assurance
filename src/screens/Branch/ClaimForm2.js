@@ -1,10 +1,10 @@
 import React from 'react';
 import { useClaimFormContext } from '../../context-stores/CliamContext';
 
-import FormTextInput from './Formtextinput';
-import FormRadioInput from './Formradioinput';
-import FormDateInput from './Formdateinput';
-import FormInputDropdown from './Formselectinput';
+import FormTextInput from './Re-usable component/Formtextinput';
+import FormRadioInput from './Re-usable component/Formradioinput';
+import FormDateInput from './Re-usable component/Formdateinput';
+import FormInputDropdown from './Re-usable component/Formselectinput';
 import  Box  from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
