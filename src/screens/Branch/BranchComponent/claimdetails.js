@@ -22,8 +22,8 @@ import Tickets from './tickets';
 import Status from './status';
 import Notes from './notes';
 import SideTab from '../subComponent/sidetab';
-import Intimationsearch from '../../Intimation/Components/Search';
-import DocumentSideTab from '../../Intimation/Components/Documents';
+import Intimationsearch from '../../Intimation/Components/subComponents/Search';
+import DocumentSideTab from '../../Intimation/Components/subComponents/Documents';
 import Claimformtemplate from './claimformtemplate';
 import { width } from '@mui/system';
 

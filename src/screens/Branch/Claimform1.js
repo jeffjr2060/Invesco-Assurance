@@ -401,11 +401,7 @@ mt:"2%"
     justifyContent:"center",
     fontSize:"15px",
    }}> 
-   <Link to="/claimform2"
-   sx={{
-    textDecoration:"none",
-   }}
-   >Next</Link>
+   <Link to="/claimform2">Next</Link>
   </Button>
 
 </Container>

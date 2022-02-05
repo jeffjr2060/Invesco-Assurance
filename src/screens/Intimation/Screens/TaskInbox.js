@@ -10,19 +10,20 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import OutboxIcon from '@mui/icons-material/Outbox';
-import MailIcon from '@mui/icons-material/Mail';
+
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
+import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
-import Intimationsearch from '../Components/subComponents/Search';
+
 
 
 
 const drawerWidth = 250;
 
-function Intimationhome() {
+function  TaskInbox() {
 
 const navigate = useNavigate();
 
@@ -62,12 +63,12 @@ const navigate = useNavigate();
              {/* list */}
       <List sx={{display:'block',}} >
           {
-            ['INBOX', 'ASSIGNED',  'REPUDIATED','UPLOAD DOCUMENT'].map((text, index) => {
-              if (text === "INBOX") {
+            ['HOME', 'ASSIGNED',  'REPUDIATED','UPLOAD DOCUMENT'].map((text, index) => {
+              if (text === "HOME") {
                 return (
-                  <ListItem button key={text} onClick={() => navigate("/taskinbox")} >
+                  <ListItem button key={text} onClick={() => navigate("/intimation")} >
                     <ListItemIcon>
-                        <MailIcon />
+                        <HomeIcon />
                    </ListItemIcon>
                     <ListItemText primary={text}
                       sx={{
@@ -164,7 +165,7 @@ const navigate = useNavigate();
         display:"flex",
         width:"100%",
       }}>
-        <Intimationsearch />
+        <h2>Task Allocated</h2>
       </Box> 
 
    </Box>
@@ -172,5 +173,4 @@ const navigate = useNavigate();
   );
 }
 
-export default Intimationhome
-
+export default TaskInbox

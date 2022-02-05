@@ -7,7 +7,7 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-
+import { useNavigate } from 'react-router-dom';
 
 
 import Toolbar from '@mui/material/Toolbar';
@@ -24,6 +24,7 @@ const drawerWidth = 300;
 function DrawerIntimation(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -53,18 +54,73 @@ function DrawerIntimation(props) {
      background:"#075e54",
  }}>
 
-     {/* list */}
-     <List>
-        {['INBOX', 'ASSIGNED','REPUDIATED','CLAIM FILES', 'UPLOAD DOCUMENTS',].map((text, index) => (
-          <ListItem button key={text} >
-            <ListItemText primary={text}
-             sx={{
-                 color:"#FBCD99",
-             }} />
-          </ListItem>
-        ))}
-      </List>
+    {/* list */}
+    <List>
+          {
+            ['INBOX', 'ASSIGNED',  'REPUDIATED', 'CLAIM FILE','UPLOAD DOCUMENT'].map((text, index) => {
+              if (text === "INBOX") {
+                return (
+                  <ListItem button key={text} onClick={() => navigate("/intimation")} >
+                    <ListItemText primary={text}
+                      sx={{
+                        color: "#FBCD99",
+                      }} />
+                  </ListItem>
+                )
+               
+              } else if (text === "ASSIGNED") {
+              
+                return (
+                  <ListItem button key={text} onClick={() => navigate("/assigned")} >
+                    <ListItemText primary={text}
+                      sx={{
+                        color: "#FBCD99",
+                      }} />
+                  </ListItem>
+                )
+              
+              
+              } else if (text === "REPUDIATED")  {
+              
+              return (
+                <ListItem button key={text} onClick={() => navigate("/repudiated")}>
+                  <ListItemText primary={text}
+                    sx={{
+                      color: "#FBCD99",
+                    }} />
+                </ListItem>
+              )
+              
+            
+              }else if (text === "CLAIM FILE")  {
+              
+                return (
+                  <ListItem button key={text} onClick={() => navigate("/claimfiles")}>
+                    <ListItemText primary={text}
+                      sx={{
+                        color: "#FBCD99",
+                      }} />
+                  </ListItem>
+                )
+              }
 
+  
+              else{
+              return (
+                <ListItem button key={text}  onClick={() => navigate("/uploadDocument")}>
+                  <ListItemText primary={text}
+                    sx={{
+                      color: "#FBCD99",
+                    }} />
+                </ListItem>
+              )
+            }
+          }
+            )
+          }
+        </List>
+
+    
 
    {/* username and profile */}
  

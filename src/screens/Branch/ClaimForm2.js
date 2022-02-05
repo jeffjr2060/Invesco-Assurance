@@ -4,7 +4,7 @@ import { useClaimFormContext } from '../../context-stores/CliamContext';
 import FormTextInput from './Re-usable component/Formtextinput';
 import FormRadioInput from './Re-usable component/Formradioinput';
 import FormDateInput from './Re-usable component/Formdateinput';
-import FormInputDropdown from './Re-usable component/Formselectinput';
+import { Link } from 'react-router-dom';
 import  Box  from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
@@ -191,6 +191,8 @@ export default function ClaimForm2() {
 <Box 
 sx={{
     ml:"45%", 
+    flexDirection:'row',
+    justifyContent:"space-around",
 }}> 
 <input
     type="submit"
@@ -201,6 +203,7 @@ sx={{
         height:"50px",
         background:"#075e54",
  }}/>
+  <Link to="/claimform3">Next</Link>
 </Box>
             </form>
         </div>
