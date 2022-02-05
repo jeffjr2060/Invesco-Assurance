@@ -17,7 +17,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Claimbtn from './claimformpopup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link  } from 'react-router-dom';
+
 
 const drawerWidth = 300;
 
@@ -60,7 +61,7 @@ function Drawerbranch(props) {
         {/* list */}
         <List>
           {
-            ['CLAIM FORM', 'CLAIM NOTIFICATION', 'REPORTED CLAIM', 'UPLOAD DOCUMENTS',].map((text, index) => {
+            ['CLAIM FORM', 'CLAIM NOTIFICATION',  'UPLOAD DOCUMENTS', 'REPORTED CLAIM',].map((text, index) => {
               if (text === "CLAIM FORM") {
                 return (
                   <ListItem button key={text} onClick={() => navigate("/claimform1")} >
@@ -70,9 +71,36 @@ function Drawerbranch(props) {
                       }} />
                   </ListItem>
                 )
-              }
+                // claim Notification
+              } else if (text === "CLAIM NOTIFICATION") {
+              
+                return (
+                  <ListItem button key={text} onClick={() => navigate("/claimnotification")} >
+                    <ListItemText primary={text}
+                      sx={{
+                        color: "#FBCD99",
+                      }} />
+                  </ListItem>
+                )
+              
+              // reported ClaiM
+              } else if (text === "UPLOAD DOCUMENTS")  {
+              
               return (
-                <ListItem button key={text} >
+                <ListItem button key={text} onClick={() => navigate("/uploadDocument")}>
+                  <ListItemText primary={text}
+                    sx={{
+                      color: "#FBCD99",
+                    }} />
+                </ListItem>
+              )
+              
+            
+              }
+              // upload document
+              else{
+              return (
+                <ListItem button key={text}  onClick={() => navigate("/reportedclaim")}>
                   <ListItemText primary={text}
                     sx={{
                       color: "#FBCD99",
@@ -80,10 +108,15 @@ function Drawerbranch(props) {
                 </ListItem>
               )
             }
+          }
             )
           }
         </List>
 
+
+     <Box>
+     <Link className="link" to='/intimation'>Intimation</Link>
+     </Box>
 
         {/* username and profile */}
 

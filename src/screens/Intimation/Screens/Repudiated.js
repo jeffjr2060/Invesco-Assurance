@@ -11,18 +11,18 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import OutboxIcon from '@mui/icons-material/Outbox';
 import MailIcon from '@mui/icons-material/Mail';
-import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
+import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
-import Intimationsearch from '../Components/subComponents/Search';
+
 
 
 
 const drawerWidth = 250;
 
-function Intimationhome() {
+function  Repudiated () {
 
 const navigate = useNavigate();
 
@@ -62,12 +62,12 @@ const navigate = useNavigate();
              {/* list */}
       <List sx={{display:'block',}} >
           {
-            ['INBOX', 'ASSIGNED',  'REPUDIATED','UPLOAD DOCUMENT'].map((text, index) => {
-              if (text === "INBOX") {
+            ['HOME', 'INBOX',  'ASSIGNED','UPLOAD DOCUMENT'].map((text, index) => {
+              if (text === "HOME") {
                 return (
-                  <ListItem button key={text} onClick={() => navigate("/taskinbox")} >
+                  <ListItem button key={text} onClick={() => navigate("/intimation")} >
                     <ListItemIcon>
-                        <MailIcon />
+                        <HomeIcon />
                    </ListItemIcon>
                     <ListItemText primary={text}
                       sx={{
@@ -77,13 +77,13 @@ const navigate = useNavigate();
                   </ListItem>
                 )
                
-              } else if (text === "ASSIGNED") {
+              } else if (text === "INBOX") {
               
                 return (
-                  <ListItem button key={text} onClick={() => navigate("/assigned")} >
+                  <ListItem button key={text} onClick={() => navigate("/taskinbox")} >
 
                    <ListItemIcon>
-                      <OutboxIcon />
+                      <MailIcon/>
                    </ListItemIcon>
                     <ListItemText primary={text}
                       sx={{
@@ -93,12 +93,12 @@ const navigate = useNavigate();
                 )
               
               
-              } else if (text === "REPUDIATED")  {
+              } else if (text === "ASSIGNED")  {
               
               return (
-                <ListItem button key={text} onClick={() => navigate("/repudiated")}>
+                <ListItem button key={text} onClick={() => navigate("/assigned")}>
                    <ListItemIcon>
-                      <BookmarksIcon />
+                      <OutboxIcon />
                    </ListItemIcon>
                   <ListItemText primary={text}
                     sx={{
@@ -164,7 +164,7 @@ const navigate = useNavigate();
         display:"flex",
         width:"100%",
       }}>
-        <Intimationsearch />
+        <h2>REPUDIATED</h2>
       </Box> 
 
    </Box>
@@ -172,5 +172,4 @@ const navigate = useNavigate();
   );
 }
 
-export default Intimationhome
-
+export default Repudiated 

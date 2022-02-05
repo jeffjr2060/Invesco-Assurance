@@ -283,7 +283,28 @@ export default function Claimform1() {
                     </Typography>
                 }
 
-                {/* policy no & expiry Date */}
+      {chasis_no &&
+     <Typography
+       
+      >Chasis no: {chasis_no}
+      </Typography>  
+      }
+ 
+    {/* end of box */}
+    </Box> 
+ <Button
+    sx={{ 
+    width:'150px',
+    height:'50px',
+    ml:"50%",
+    mt:"-2%",
+    background:"#075e54",
+    alignItems:"center",
+    justifyContent:"center",
+    fontSize:"15px",
+   }}> 
+   <Link to="/claimform2">Next</Link>
+  </Button>
 
                 {policy_number &&
                     <Typography

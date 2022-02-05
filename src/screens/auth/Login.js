@@ -69,6 +69,11 @@ export default function Login() {
                         <Link className="link" to='/resetpassword'>Forgot Password</Link>
                         <button className="submit" type="submit">Login</button>
                     </form>
+                   <div style={{
+                       marginTop:"-25%"
+                   }}>
+                    <Link className="link" to='/branchhome'>Proceed</Link>
+                  </div>
                 </div>
 
             </div>

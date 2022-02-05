@@ -1,11 +1,11 @@
 import React from 'react';
 import { useClaimFormContext } from '../../context-stores/CliamContext';
 
-import FormTextInput from './Formtextinput';
-import FormRadioInput from './Formradioinput';
-import FormDateInput from './Formdateinput';
-import FormInputDropdown from './Formselectinput';
-import Box from '@mui/material/Box';
+import FormTextInput from './Re-usable component/Formtextinput';
+import FormRadioInput from './Re-usable component/Formradioinput';
+import FormDateInput from './Re-usable component/Formdateinput';
+import { Link } from 'react-router-dom';
+import  Box  from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
@@ -188,20 +188,23 @@ export default function ClaimForm2() {
                     <FormDateInput name={"inspection_date"} control={control} label="When can it be Inspected?" />
                 </Box>
                 {/*  */}
-                <Box
-                    sx={{
-                        ml: "45%",
-                    }}>
-                    <input
-                        type="submit"
-                        value="Submit"
-                        style={{
-                            display: "flex",
-                            width: "150px",
-                            height: "50px",
-                            background: "#075e54",
-                        }} />
-                </Box>
+<Box 
+sx={{
+    ml:"45%", 
+    flexDirection:'row',
+    justifyContent:"space-around",
+}}> 
+<input
+    type="submit"
+    value="Submit" 
+    style={{
+        display:"flex",
+        width:"150px",
+        height:"50px",
+        background:"#075e54",
+ }}/>
+  <Link to="/claimform3">Next</Link>
+</Box>
             </form>
         </div>
     );

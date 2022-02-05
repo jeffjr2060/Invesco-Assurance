@@ -22,8 +22,10 @@ import Tickets from './tickets';
 import Status from './status';
 import Notes from './notes';
 import SideTab from '../subComponent/sidetab';
-import Intimationsearch from '../../Intimation/Components/Search';
-import DocumentSideTab from '../../Intimation/Components/Documents';
+import Intimationsearch from '../../Intimation/Components/subComponents/Search';
+import DocumentSideTab from '../../Intimation/Components/subComponents/Documents';
+import Claimformtemplate from './claimformtemplate';
+import { width } from '@mui/system';
 
 
 const drawerWidth = 240;
@@ -63,6 +65,7 @@ function a11yProps(index) {
 
 function Claimdetails() {
   const [value, setValue] = useState(0);
+  const [tab, settab] = useState(0);
   const { id } = useParams();
   const [claim_data, setCliamsData] = useState(null);
 
@@ -75,6 +78,9 @@ function Claimdetails() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+  const handlechange = (event, newValue) => {
+    settab(newValue);
   };
   return <div
     style={{
@@ -125,14 +131,27 @@ function Claimdetails() {
       variant="permanent"
       anchor="left"
     >
+
+    <Box
+      sx={{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        width:"100%",
+      }}
+     >
+
+    </Box>
+
+
     </Drawer>
     <Container
       sx={{
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        minHeight: '100%',
-        minWidth: '100%'
+        minHeight: '80%',
+        minWidth: '95%'
       }}>
       <Box
         sx={{
@@ -149,7 +168,9 @@ function Claimdetails() {
           sx={{
             display: 'flex',
             width: "100%",
-            mt: "55px"
+            mt: "55px",
+            ml:"-5%",
+            
           }}>
           <Intimationsearch />
         </Box>
@@ -158,7 +179,6 @@ function Claimdetails() {
           maxWidth: "100%",
           minHeight: '100%',
           marginTop: '7%',
-
 
         }}>
           <Tabs
@@ -169,139 +189,120 @@ function Claimdetails() {
             aria-label="scrollable auto tabs example"
 
           >
-            <Tab label="Claim Info"  {...a11yProps(0)} />
+            <Tab label="Claim Form"  {...a11yProps(0)} />
             <Tab label="Documents"  {...a11yProps(1)} />
             <Tab label="Investigation"  {...a11yProps(2)} />
             <Tab label="Litigation"  {...a11yProps(3)} />
             <Tab label="payment"  {...a11yProps(4)} />
 
           </Tabs>
-          <hr />
+          <Divider />
           <TabPanel value={value} index={0}>
-            <Box sx={{
-              display: 'flex',
-              height: '480px',
-              width: '100%',
-              backgroundColor: '#fff',
-              borderRadius: '10px',
-            }}>
-              {/* claim info */}
-              {claim_data &&
-                <div styles={{
-                  display: 'flex',
-
-                }}>
-                  <Box sx={{ padding: '20px' }}
-                  >
-                    <Typography>Policy Number: {claim_data.policy_number}</Typography>
-                    <Typography>Vehicle registration: {claim_data.car_reg_no}</Typography>
-                    <Typography>Policy Holder: {claim_data.policy_holders_name}</Typography>
-                    <Typography>Address: Nakuru</Typography>
-                    <Typography>Tellno: 0722774531</Typography>
-                    <Typography>cc: 1500</Typography>
-                    <Typography>Occupation: Businessman</Typography>
-                    <Typography>Hire purchase company: T.B.A</Typography>
-                    <Typography>Make: TOYOTA HIACE</Typography>
-                    <Typography>Carrying Capacity: 14</Typography>
-                    <Typography>TrailerRegno: N/A</Typography>
-                    <Typography>chasisno: SV30-0169266</Typography>
-                  </Box>
-                </div>
-              }
-            </Box>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-
-            <Box sx={{
-              display: 'flex',
-              height: '480px',
-              width: '100%',
-              backgroundColor: '#fff',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '10px',
-            }}>
-              {/* Documents */}
-              <DocumentSideTab />
-            </Box>
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <Box sx={{
-              display: 'flex',
-              height: '480px',
-              width: '100%',
-              backgroundColor: '#fff',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '10px',
-            }}>
-              <h2>Investigation Reports</h2>
-
-            </Box>
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-            <Box sx={{
-              display: 'flex',
-              height: '480px',
-              width: '100%',
-              backgroundColor: '#fff',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '10px',
-            }}>
-              <h2>Litigation</h2>
-
-            </Box>
-          </TabPanel>
-          <TabPanel value={value} index={4}>
-            <Box sx={{
-              display: 'flex',
-              height: '480px',
-              width: '100%',
-              backgroundColor: '#fff',
-              alignItems: 'center',
-              justifyContentx: 'center',
-              borderRadius: '10px',
-            }}>
-              <h2>Payments</h2>
-            </Box>
-          </TabPanel>
-        </Box>
-
-      </Box>
-
-      {/**second row on the container */}
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          width: '35%',
-          backgroundColor: '#fff',
-        }}
-      >
+             {/* claim info */}
         <Box sx={{
-          borderBottom: 1, borderColor: 'divider',
-          marginTop: '20%'
+            display: 'flex',
+            backgroundColor: '#fff',
+            borderRadius: '10px',
+            height:"500px",
+            overflowY:"auto",
         }}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Status" {...a11yProps(0)} />
-            <Tab label="Notes 4" {...a11yProps(1)} />
-            <Tab label="Tickets 3" {...a11yProps(2)} />
-          </Tabs>
+            <Claimformtemplate />
         </Box>
-        <TabPanel value={value} index={0}>
-          <Status />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <Notes />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <Tickets />
-        </TabPanel>
+
+          {/*  */}
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+
+        <Box sx={{
+          display: 'flex',
+          height: '480px',
+          width: '100%',
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '10px',
+        }}>
+          {/* Documents */}
+          <DocumentSideTab />
+        </Box>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Box sx={{
+          display: 'flex',
+          height: '480px',
+          width: '100%',
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '10px',
+        }}>
+          <h2>Investigation Reports</h2>
+
+        </Box>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Box sx={{
+          display: 'flex',
+          height: '480px',
+          width: '100%',
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '10px',
+        }}>
+          <h2>Litigation</h2>
+
+        </Box>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <Box sx={{
+          display: 'flex',
+          height: '480px',
+          width: '100%',
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          justifyContentx: 'center',
+          borderRadius: '10px',
+        }}>
+          <h2>Payments</h2>
+        </Box>
+      </TabPanel>
+    </Box>
+
+  </Box>
+
+  {/**second row on the container */}
+  <Box
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      width: '35%',
+      backgroundColor: '#fff',
+    }}
+  >
+    <Box sx={{
+      borderBottom: 1, borderColor: 'divider',
+      marginTop: '20%'
+    }}>
+      <Tabs value={tab} onChange={handlechange} aria-label="basic tabs example">
+        <Tab label="Notes 4" {...a11yProps(0)} />
+        <Tab label="Status" {...a11yProps(1)} />
+        <Tab label="Tickets 3" {...a11yProps(2)} />
+      </Tabs>
+    </Box>
+    <TabPanel value={tab} index={0}>
+    <Notes />
+    </TabPanel>
+    <TabPanel value={tab} index={1}>
+      
+    </TabPanel>
+    <TabPanel value={tab} index={2}>
+      <Tickets />
+    </TabPanel>
 
 
-      </Box>
+  </Box>
 
 
     </Container>
