@@ -3,6 +3,11 @@ import { DataGrid } from '@mui/x-data-grid';
 import FormTextInput from '../Re-usable component/Formtextinput';
 import { useForm } from "react-hook-form";
 import { Button } from '@material-ui/core';
+import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import Toolbar from '@mui/material/Toolbar';
+import AppBar from '@mui/material/AppBar';
 
  function ClaimForm3() {
     const [collateral_damage, setCollateralDamage] = useState([]);
@@ -27,13 +32,43 @@ import { Button } from '@material-ui/core';
     }
 
     return (
-        <div style={{ height: 650, width: '100%', background: '#ece5dd', }}>
+ <Box
+     component="main"
+     sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+ >
+  <AppBar
+     position="fixed"
+    sx={{ width: "100%",
+    background:"#fff",
+  }}>
+    <Toolbar>
+  <Typography variant="h6" noWrap component="div">
+    
+  </Typography>
+   </Toolbar>
+   </AppBar>
+
+   <Typography 
+    variant='h6'
+    sx={{
+        mt:"6%",
+        ml:"2%"
+    }}
+  >OTHER VEHCLES INVOLVED AND PROPERTY DAMAGED
+
+ </Typography>
+
+        <div style={{ height: 350,
+              width: '60%',
+               marginLeft:"20%", 
+               background: '#ece5dd',
+               marginTop:"2%", }}>
             {collateral_damage &&
                 <DataGrid
                     rows={collateral_damage}
                     columns={collateral_damage_columns}
-                    pageSize={20}
-                    rowsPerPageOptions={[20]}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
                 />
             }
             <form onSubmit={handleSubmit(collateralDamageSubmit)}>
@@ -42,9 +77,84 @@ import { Button } from '@material-ui/core';
                 <FormTextInput control={control} name="reg_no" label="Registration Number" />
                 <FormTextInput control={control} name="insurers_name" label="Owner\'s name" />
                 <FormTextInput control={control} name="other_property_damaged" label="Other Property damage" />
-                <input type="submit" value="Submit" />
+                <input
+                 type="submit"
+                 value="ADD" 
+                 style={{
+                     width:"150px",
+                     height:"50px",
+                     background:"#000",
+                 }}/>
             </form>
+            <Box sx={{ml:"55%",mt:"-2%"}}>
+             <Link to="/claimform2">Next</Link>
+            </Box>
+           
         </div>
+
+
+   
+  </Box>
+
+
+
+
+
+
+//     <Box
+//       sx={{
+//           display:"flex",
+//           width:"100vw",
+//           height:"100vh",
+//           flexDirection:"column",
+//           justifyContent:"flex-start",
+//       }}
+//      >
+//   <Typography 
+//     variant='h6'
+//     sx={{
+//         mt:"6   %",
+//         ml:"2%"
+//     }}
+//   >OTHER VEHCLES INVOLVED AND PROPERTY DAMAGED
+
+//  </Typography>
+
+//         <div style={{ height: 350,
+//               width: '60%',
+//                marginLeft:"20%", 
+//                background: '#ece5dd',
+//                marginTop:"2%", }}>
+//             {collateral_damage &&
+//                 <DataGrid
+//                     rows={collateral_damage}
+//                     columns={collateral_damage_columns}
+//                     pageSize={5}
+//                     rowsPerPageOptions={[5]}
+//                 />
+//             }
+//             <form onSubmit={handleSubmit(collateralDamageSubmit)}>
+//                 <FormTextInput control={control} name="owners_name" label="Owner\'s name" required />
+//                 <FormTextInput control={control} name="owners_address" label="Owner\'s address" />
+//                 <FormTextInput control={control} name="reg_no" label="Registration Number" />
+//                 <FormTextInput control={control} name="insurers_name" label="Owner\'s name" />
+//                 <FormTextInput control={control} name="other_property_damaged" label="Other Property damage" />
+//                 <input
+//                  type="submit"
+//                  value="ADD" 
+//                  style={{
+//                      width:"150px",
+//                      height:"50px",
+//                      background:"#000",
+//                  }}/>
+//             </form>
+//             <Box sx={{ml:"55%",mt:"-2%"}}>
+//              <Link to="/claimform2">Next</Link>
+//             </Box>
+           
+//         </div>
+       
+//     </Box>  
     );
 }
 
