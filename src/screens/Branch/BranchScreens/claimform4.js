@@ -9,18 +9,18 @@ import { Link } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 
- function ClaimForm3() {
+ function ClaimForm4() {
     const [collateral_damage, setCollateralDamage] = useState([]);
     const { handleSubmit, reset, control } = useForm()
     const [id, setId] = useState(1)
 
     const collateral_damage_columns = [
         { field: 'id', headerName: '#', width: 5 },
-        { field: 'owners_name', headerName: 'Owner\'s name', width: 200 },
-        { field: 'owners_address', headerName: 'Owner\'s address', width: 150, },
-        { field: 'reg_no', headerName: 'Reg Number', width: 150, },
-        { field: 'insurers_name', headerName: 'Name of Insurer', width: 150, },
-        { field: 'other_property_damaged', headerName: 'Other Property Damaged', width: 150, },
+        { field: 'owners_name', headerName: 'Name', width: 200 },
+        { field: 'owners_address', headerName: 'Address', width: 100, },
+        { field: 'reg_no', headerName: 'Relationship ', width: 200, },
+        { field: 'insurers_name', headerName: 'Reg no of vehicle', width: 150, },
+        { field: 'other_property_damaged', headerName: 'Apparent Injuries', width: 150, },
     ]
 
     const collateralDamageSubmit = (data, e) => {
@@ -54,7 +54,7 @@ import AppBar from '@mui/material/AppBar';
         mt:"5%",
         ml:"2%"
     }}
-  >OTHER VEHCLES INVOLVED AND PROPERTY DAMAGED
+  >PERSONS INJURED
 
  </Typography>
 
@@ -75,11 +75,11 @@ import AppBar from '@mui/material/AppBar';
              onSubmit={handleSubmit(collateralDamageSubmit)}
              style={{display:"flex",flexDirection:"column"}}
              >
-                <FormTextInput control={control} name="owners_name" label="Owner\'s name" required />
-                <FormTextInput control={control} name="owners_address" label="Owner\'s address" />
-                <FormTextInput control={control} name="reg_no" label="Registration Number" />
-                <FormTextInput control={control} name="insurers_name" label="Owner\'s name" />
-                <FormTextInput control={control} name="other_property_damaged" label="Other Property damage" />
+                <FormTextInput control={control} name="owners_name" label="Name" required />
+                <FormTextInput control={control} name="owners_address" label="Address" />
+                <FormTextInput control={control} name="reg_no" label="Relationship to policy holder" />
+                <FormTextInput control={control} name="insurers_name" label="if driver or passenger Reg, No. of the Vehicle" />
+                <FormTextInput control={control} name="other_property_damaged" label="Apparent injuries" />
                 <input
                  type="submit"
                  value="ADD" 
@@ -90,8 +90,8 @@ import AppBar from '@mui/material/AppBar';
                  }}/>
             </form>
             <Box sx={{ml:"55%",mt:"-2%",flexDirection:"row",}}>
-            <Link to="/claimform2" >Previous</Link> 
-             <Link to="/claimform4">Next</Link>
+            <Link to="/claimform3" >Previous</Link> 
+             <Link to="/claimform5">Next</Link>
             </Box>
            
         </div>
@@ -100,7 +100,13 @@ import AppBar from '@mui/material/AppBar';
    
   </Box>
 
+
+
+
+
+
+
     );
 }
 
-export default ClaimForm3
+export default ClaimForm4
