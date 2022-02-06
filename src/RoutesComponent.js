@@ -28,6 +28,8 @@ import ClaimForm4 from './screens/Branch/BranchScreens/claimform4';
 import ClaimForm5 from './screens/Branch/BranchScreens/claimform5';
 import ClaimForm6 from './screens/Branch/BranchScreens/Claimform6';
 import ClaimForm7 from './screens/Branch/BranchScreens/Claimform7';
+import ClaimnotificatioReport from './screens/Branch/BranchComponent/ClaimnotificationReport';
+import BranchDocuments from './screens/Branch/BranchComponent/branchdocument';
 
 export default function RoutesComponent() {
     const { user } = useAuth();
@@ -81,7 +83,9 @@ export default function RoutesComponent() {
                 <Route path="/claimform4" element={<ClaimForm4 />} /> 
                 <Route path="/claimform5" element={<ClaimForm5 />} /> 
                 <Route path="/claimform6" element={<ClaimForm6 />} /> 
-                <Route path="/claimform7" element={<ClaimForm7 />} />                   
+                <Route path="/claimform7" element={<ClaimForm7 />} />    
+                <Route path="/claimnotificatioreport" element={<ClaimnotificatioReport />} />                   
+                <Route path="/BranchDocuments" element={<BranchDocuments/>} />                                                                   
 
             </Routes>
 

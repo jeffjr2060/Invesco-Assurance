@@ -61,7 +61,7 @@ function Drawerbranch(props) {
         {/* list */}
         <List>
           {
-            ['CLAIM FORM', 'CLAIM NOTIFICATION',  'UPLOAD DOCUMENTS', 'REPORTED CLAIM',].map((text, index) => {
+            ['CLAIM FORM', 'CLAIM NOTIFICATION',  'UPLOAD DOCUMENTS', 'REPORTS',].map((text, index) => {
               if (text === "CLAIM FORM") {
                 return (
                   <ListItem button key={text} onClick={() => navigate("/claimform1")} >

@@ -9,19 +9,18 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import ArticleIcon from '@mui/icons-material/Article';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
-import ReportedClaimTable from '../subComponent/Reportedclaimtable';
 
 
 
 
 const drawerWidth = 250;
 
-function ReportedClaim() {
+function ClaimnotificatioReport() {
 
 const navigate = useNavigate();
 
@@ -61,12 +60,12 @@ const navigate = useNavigate();
              {/* list */}
       <List sx={{display:'block',}} >
           {
-            ['CLAIM NOTIFICATION', 'DOCUMENTS'  ].map((text, index) => {
-              if (text === "CLAIM NOTIFICATION") {
+            ['CLAIM FORM', 'DOCUMENTS'  ].map((text, index) => {
+              if (text === "CLAIM FORM") {
                 return (
-                  <ListItem button key={text} onClick={() => navigate("/claimnotificatioreport")} >
+                  <ListItem button key={text} onClick={() => navigate("/reportedclaim")} >
                     <ListItemIcon>
-                        <NotificationsActiveIcon />
+                        <ArticleIcon />
                    </ListItemIcon>
                     <ListItemText primary={text}
                       sx={{
@@ -123,27 +122,20 @@ const navigate = useNavigate();
 
    
   </Box>
-    {/*  */}
-
- {/* Report Table */}
- <Box
- sx={{
-   display:"flex",
-   width:'100%',
-   height:"88vh",
-   overflowY:"auto",
- }}>
-   {/* table */}
-      <ReportedClaimTable />
-
- </Box>
-
+        {/*  */}
+   {/* Searchbar  */}
+      <Box sx={{
+        display:"flex",
+        width:"100%",
+      }}>
+      
+      </Box> 
 
    </Box>
   </Box>
   );
 }
 
-export default ReportedClaim
+export default ClaimnotificatioReport
 
 
