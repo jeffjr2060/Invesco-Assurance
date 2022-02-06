@@ -1,18 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { useClaimFormContext } from '../../context-stores/CliamContext';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // material ui imports
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import { Button, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import ArrowDropUpTwoToneIcon from '@mui/icons-material/ArrowDropUpTwoTone';
 import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { width } from '@mui/system';
 
 export default function Claimform1() {
-    const navigate = useNavigate();
     const [loading, setLoading] = React.useState(false);
     function handleClick() {
         setLoading(true);
@@ -76,7 +75,6 @@ export default function Claimform1() {
                 justifyContent: "flex-start",
                 width: "100vw",
                 height: "100vh",
-
             }}>
             {/* this box hold the form brand headings */}
             <Box
@@ -86,7 +84,6 @@ export default function Claimform1() {
                     justifyContent: "flex-start",
                     width: "100%",
                     height: "380px",
-
                 }}>
                 {/* logo and Address */}
                 <Box
@@ -232,201 +229,301 @@ export default function Claimform1() {
                     />
 
                 </form>
-
-
-                {/* Policy Details  */}
-
-
-                {/*name and tell no  */}
-
             </Box>
 
-            <Typography sx={{ fontSize: "20px", mt: "2%", fontWeight: "900" }}>POLICY DETAILS</Typography>
+            {/* Policy Details  */}
             <Box
                 sx={{
                     display: "flex",
-                    flexDirection: 'column',
-                    ml: "15%",
-                    mt: "2%"
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                    width: "100%",
                 }}
             >
-
-                {/* name and tell no */}
-
-                {holders_name &&
-                    <Typography
-
-                    >Name: {holders_name}
-                    </Typography>
-                }
-
-                {tell_no &&
-                    <Typography
-
-                    >Tell No: {tell_no}
-                    </Typography>
-                }
-
-                {/* address  and occupation */}
-
-                {holders_address &&
-                    <Typography
-
-                    >Address: {holders_address}
-                    </Typography>
-                }
-
-                {holders_occupation &&
-                    <Typography
-
-                    >Occupation: {holders_occupation}
-                    </Typography>
-                }
-
-      {chasis_no &&
-     <Typography
-       
-      >Chasis no: {chasis_no}
-      </Typography>  
-      }
- 
-    {/* end of box */}
-    </Box> 
- <Button
-    sx={{ 
-    width:'150px',
-    height:'50px',
-    ml:"50%",
-    mt:"-2%",
-    background:"#075e54",
-    alignItems:"center",
-    justifyContent:"center",
-    fontSize:"15px",
-   }}> 
-   <Link to="/claimform2">Next</Link>
-  </Button>
-
-                {policy_number &&
-                    <Typography
-
-                    >Policy Number: {policy_number}
-                    </Typography>
-                }
-
-                {expiry_date &&
-                    <Typography
-
-                    >Expiry Date: {new Intl.DateTimeFormat("en-GB", {
-                        year: "numeric",
-                        month: "long",
-                        day: "2-digit"
-                    }).format(expiry_date)}
-                    </Typography>
-                }
-
-                {/* name of hire purchase and make */}
-
-                {hire_purchase_company &&
-                    <Typography
-
-                    >Name of Hirepurchase Company: {hire_purchase_company}
-                    </Typography>
-                }
-
-                {make_model &&
-                    <Typography
-
-                    >Make and Model: {make_model}
-                    </Typography>
-                }
-
-                {/* hp cc and year of manufacture */}
-
-                {hp_cc &&
-                    <Typography
-
-                    >Hp_Cc: {hp_cc}
-                    </Typography>
-                }
-
-                {manufacture_year &&
-                    <Typography
-
-                    >Year of manufacture: {new Intl.DateTimeFormat("en-GB", {
-                        year: "numeric",
-                        month: "long",
-                        day: "2-digit"
-                    }).format(manufacture_year)}
-                    </Typography>
-                }
-
-                {/* REG NO   and CARRYING CAPACITY */}
-
-                {vehicle_registration &&
+                {/*name and tell no  */}
+                <Box
+                    sx={{
+                        color: '#000',
+                        flexDirection: "column",
+                        justifyContent: 'flex-start',
+                        width: "100%",
+                    }}>
                     <Typography
                         sx={{
                             display: "flex",
-                            fontSize: "20px",
+                            fontSize: "21px",
                         }}
-                    >Vehicle Reg No: {vehicle_registration}
-                    </Typography>
-                }
+                    >POLICY DETAILS</Typography>
+                    {/* name and tell no */}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            width: "80%",
+                            ml: "10%",
+                            mt: "3%",
+                        }}>
+                        {holders_name &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                }}
+                            >Name: {holders_name}
+                            </Typography>
+                        }
 
-                {vehicle_capacity &&
-                    <Typography
+                        {tell_no &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                    ml: "35%",
+                                }}
+                            >Tell No: {tell_no}
+                            </Typography>
+                        }
+                    </Box>
+                    {/* address  and occupation */}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            width: "80%",
+                            ml: "10%",
+                            mt: "3%",
+                        }}>
+                        {holders_address &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                }}
+                            >Address: {holders_address}
+                            </Typography>
+                        }
 
-                    >Carrying Capacity: {vehicle_capacity}
-                    </Typography>
-                }
+                        {holders_occupation &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                    ml: "35%",
+                                }}
+                            >Occupation: {holders_occupation}
+                            </Typography>
+                        }
+                    </Box>
+                    {/* policy no & expiry Date */}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            width: "80%",
+                            ml: "10%",
+                            mt: "3%",
+                        }}>
+                        {policy_number &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                }}
+                            >Policy Number: {policy_number}
+                            </Typography>
+                        }
 
-                {/* Reg no of Trailer  and trailer carrying Capacity */}
+                        {expiry_date &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                    ml: "35%",
+                                }}
+                            >Expiry Date: {new Intl.DateTimeFormat("en-GB", {
+                                year: "numeric",
+                                month: "long",
+                                day: "2-digit"
+                            }).format(expiry_date)}
+                            </Typography>
+                        }
+                    </Box>
+                    {/* name of hire purchase and make */}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            width: "80%",
+                            ml: "10%",
+                            mt: "3%",
+                        }}>
+                        {hire_purchase_company &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                }}
+                            >Name of Hirepurchase Company: {hire_purchase_company}
+                            </Typography>
+                        }
 
-                {trailer_registration &&
-                    <Typography
+                        {make_model &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                    ml: "35%",
+                                }}
+                            >Make and Model: {make_model}
+                            </Typography>
+                        }
+                    </Box>
+                    {/* hp cc and year of manufacture */}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            width: "80%",
+                            ml: "10%",
+                            mt: "3%",
+                        }}>
+                        {hp_cc &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                }}
+                            >Hp_Cc: {hp_cc}
+                            </Typography>
+                        }
 
-                    >Trailer Registration: {trailer_registration}
-                    </Typography>
-                }
+                        {manufacture_year &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                    ml: "35%",
+                                }}
+                            >Year of manufacture: {new Intl.DateTimeFormat("en-GB", {
+                                year: "numeric",
+                                month: "long",
+                                day: "2-digit"
+                            }).format(manufacture_year)}
+                            </Typography>
+                        }
+                    </Box>
+                    {/* REG NO   and CARRYING CAPACITY */}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            width: "80%",
+                            ml: "10%",
+                            mt: "3%",
+                        }}>
+                        {vehicle_registration &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                }}
+                            >Vehicle Reg No: {vehicle_registration}
+                            </Typography>
+                        }
 
-                {trailer_capacity &&
-                    <Typography
+                        {vehicle_capacity &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                    ml: "35%",
+                                }}
+                            >Carrying Capacity: {vehicle_capacity}
+                            </Typography>
+                        }
+                    </Box>
+                    {/* Reg no of Trailer  and trailer carrying Capacity */}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            width: "80%",
+                            ml: "10%",
+                            mt: "3%",
+                        }}>
+                        {trailer_registration &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                }}
+                            >Trailer Registration: {trailer_registration}
+                            </Typography>
+                        }
 
-                    >Trailer Carrying Capacity: {trailer_capacity}
-                    </Typography>
-                }
+                        {trailer_capacity &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                    ml: "35%",
+                                }}
+                            >Trailer Carrying Capacity: {trailer_capacity}
+                            </Typography>
+                        }
+                    </Box>
+                    {/* Chasis no  and  Owner Address */}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            width: "80%",
+                            ml: "10%",
+                            mt: "3%",
+                        }}>
+                        {owners_address &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                }}
+                            >Owmer Address: {owners_address}
+                            </Typography>
+                        }
 
-                {/* Chasis no  and  Owner Address */}
+                        {chasis_no &&
+                            <Typography
+                                sx={{
+                                    display: "flex",
+                                    fontSize: "20px",
+                                    ml: "35%",
+                                }}
+                            >Occupation: {chasis_no}
+                            </Typography>
+                        }
+                    </Box>
 
-                {owners_address &&
-                    <Typography
-
-                    >Owmer Address: {owners_address}
-                    </Typography>
-                }
-
-                {chasis_no &&
-                    <Typography
-
-                    >Occupation: {chasis_no}
-                    </Typography>
-                }
-
+                </Box>
                 {/* end of box */}
+
             </Box>
-            <Button
-                onClick={() => navigate("/claimform2")}
-                sx={{
-                    width: '150px',
-                    height: '50px',
-                    ml: "50%",
-                    mt: "-2%",
-                    background: "#075e54",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "15px",
-                }}>
-                Next
-            </Button>
+            <Box> <Link to="/claimform2">Next</Link></Box>
 
         </Container>
     )

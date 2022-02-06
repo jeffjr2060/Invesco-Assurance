@@ -19,11 +19,10 @@ export default function ClaimForm3() {
     ]
 
     const collateralDamageSubmit = (data, e) => {
+        e.preventDefault();
         setCollateralDamage(prevState => [...prevState, { id: id, ...data }]);
         setId(prevState => prevState + 1);
-        reset('', {
-            keepValues: false,
-        })
+        reset({});
     }
 
     return (

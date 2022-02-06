@@ -4,10 +4,13 @@ import { useClaimFormContext } from '../../context-stores/CliamContext';
 import FormTextInput from './Re-usable component/Formtextinput';
 import FormRadioInput from './Re-usable component/Formradioinput';
 import FormDateInput from './Re-usable component/Formdateinput';
+import FormTextAreaInput from './Re-usable component/Formdateinput';
+
 import { Link } from 'react-router-dom';
-import  Box  from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { Controller } from "react-hook-form";
 
 
 const options = [
@@ -115,22 +118,34 @@ export default function ClaimForm2() {
                         mt: "2%",
                     }}>
                     <Typography sx={{ fontSize: "30px", ml: "-5%" }}>Statement by the Driver</Typography>
-                    <TextareaAutosize
-                        fullWidth
-                        label="Note"
-                        name={" drivers_statement"}
-                        control={control} ref={ref}
-                        style={{ width: "100%", height: 250, fontSize: '24px' }}
+                    <Controller
+                        name="drivers_statement"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <TextareaAutosize
+                                fullWidth
+                                label="Note"
+                                onChange={onChange}
+                                value={value}
+                                style={{ width: "100%", height: 250, fontSize: '24px' }}
+                            />
+                        )}
                     />
                     {/* to do */}
                     <Box sx={{ mt: "2%" }}>
                         <Typography >Statement by the Owner</Typography>
-                        <TextareaAutosize
-                            fullWidth
-                            label="Note"
-                            name={"policy_holders_statement"}
-                            control={control} ref={ref}
-                            style={{ width: "100%", height: 250, fontSize: '24px' }}
+                        <Controller
+                            name="policy_holders_statement"
+                            control={control}
+                            render={({ field: { onChange, value } }) => (
+                                <TextareaAutosize
+                                    fullWidth
+                                    label="Note"
+                                    onChange={onChange}
+                                    value={value}
+                                    style={{ width: "100%", height: 250, fontSize: '24px' }}
+                                />
+                            )}
                         />
                     </Box>
                 </Box>
@@ -188,23 +203,23 @@ export default function ClaimForm2() {
                     <FormDateInput name={"inspection_date"} control={control} label="When can it be Inspected?" />
                 </Box>
                 {/*  */}
-<Box 
-sx={{
-    ml:"45%", 
-    flexDirection:'row',
-    justifyContent:"space-around",
-}}> 
-<input
-    type="submit"
-    value="Submit" 
-    style={{
-        display:"flex",
-        width:"150px",
-        height:"50px",
-        background:"#075e54",
- }}/>
-  <Link to="/claimform3">Next</Link>
-</Box>
+                <Box
+                    sx={{
+                        ml: "45%",
+                        flexDirection: 'row',
+                        justifyContent: "space-around",
+                    }}>
+                    <input
+                        type="submit"
+                        value="Submit"
+                        style={{
+                            display: "flex",
+                            width: "150px",
+                            height: "50px",
+                            background: "#075e54",
+                        }} />
+                    <Link to="/claimform3">Next</Link>
+                </Box>
             </form>
         </div>
     );
