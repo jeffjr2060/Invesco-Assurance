@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useReducer } from 'react';
 import { Controller, useForm } from "react-hook-form";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -10,15 +10,20 @@ export function useClaimFormContext() {
 }
 
 export default function ClaimFormContextProvider({ children }) {
-    // const [policy_data, setPolicy] = useState({});
-    //react hook form
-    const [claim_id, setClaimId] = useState(null);
-    const { handleSubmit, reset, control, ref } = useForm({
+
+    const [req_one_data, setReqOneData] = useState(null);
+
+    const [collateral_damage, setCollateralDamage] = useState([]);
+    const [persons_injured, setPersonsInjured] = useState([]);
+    const [independent_witnesses, setIndependentWitnesses] = useState([]);
+    const [passengers, setPassengers] = useState([]);
+
+    const { handleSubmit, reset, control } = useForm({
         defaultValues: {
             accident_blame: "",
             accident_liability: "",
             apparent_damages: "",
-            chassis_no: "SV30-0169266",
+            chassis_no: "",
             condition: "",
             date_of_accident: new Date(Date.now()),
             date_of_issue: new Date(Date.now()),
@@ -38,9 +43,9 @@ export default function ClaimFormContextProvider({ children }) {
             garage_name: "",
             garage_telno: "",
             goods_carried: "",
-            hire_purchase_company: "T.B.A",
-            holders_address: "Nakuru",
-            holders_name: "Benson Kariuki",
+            hire_purchase_company: "",
+            holders_address: "",
+            holders_name: "",
             hp_cc: 1500,
             inspection_location: "",
             inspection_date: new Date(Date.now()),
@@ -50,12 +55,12 @@ export default function ClaimFormContextProvider({ children }) {
             license_number: "",
             lights: "",
             load_weight: "",
-            make_model: "TOYOTA HIACE",
+            make_model: "",
             manufacture_year: new Date(Date.now()),
-            occupation: "Businessman",
+            occupation: "",
             owner_of_goods: "",
-            owners_address: "Nakuru",
-            owners_name: "Benson Kariuki",
+            owners_address: "",
+            owners_name: "",
             owns_vehicle: "",
             permission: "",
             place: "",
@@ -65,22 +70,22 @@ export default function ClaimFormContextProvider({ children }) {
             police_officers_no: "",
             police_stations: "",
             policy_holders_statement: "",
-            policy_number: "077/084/1/000202/2010/09",
+            policy_number: "",
             prev_accident_details: "",
             prev_accidents: "",
             prev_conviction_details: "",
             prev_convictions: "",
             road_surface: "",
             service_duration: "",
-            tell_no: "0722774531",
+            tell_no: "",
             time_of_accident: new Date(Date.now()),
             trailer_attached: "",
             trailer_capacity: 0,
-            trailer_registration: "N/A",
+            trailer_registration: "",
             trailer_weight: "",
             use_of_vehicle: "",
-            vehicle_capacity: 14,
-            vehicle_registration: "KAQ 057C",
+            vehicle_capacity: 0,
+            vehicle_registration: "",
             vehicle_still_used: "",
             visibility: "",
             warning_signs: "",
@@ -94,14 +99,14 @@ export default function ClaimFormContextProvider({ children }) {
     const [holders_address, setholders_address] = useState('');
     const [holders_occupation, setholders_occupation] = useState('');
     const [policy_number, setpolicy_number] = useState('');
-    const [expiry_date, setexpiry_date] = useState('');
+    const [expiry_date, setexpiry_date] = useState(new Date(Date.now()));
     const [hire_purchase_company, sethire_purchase_company] = useState('');
     const navigate = useNavigate();
 
     //vehicles details
     const [make_model, setmake_model] = useState('');
     const [hp_cc, sethp_cc] = useState('');
-    const [manufacture_year, setmanufacture_year] = useState('');
+    const [manufacture_year, setmanufacture_year] = useState(new Date(Date.now()));
     const [vehicle_registration, setvehicle_registration] = useState('');
     const [vehicle_capacity, setvehicle_capacity] = useState('');
     const [trailer_registration, settrailer_registration] = useState('');
@@ -205,13 +210,26 @@ export default function ClaimFormContextProvider({ children }) {
             chassis_no: chasis_no,
         }
         console.log(payload);
-        axios.post('/newclaim', payload).then(response => {
+        setReqOneData({...payload});
+        navigate('/claimform3');
+    }
+
+    const submitData = () => {
+        // axios.post('/newclaim', req_one_data).then(response => {
+        //     let data = response.data
+        //     console.log(data.Claim_id);
+        // });
+        let payload = {
+            collateral_damage: collateral_damage,
+            persons_injured: persons_injured,
+            independent_witnesses: independent_witnesses,
+            passengers: passengers,
+        }
+        console.log(payload);
+        axios.post('/claimdata/1', payload).then(response => {
             let data = response.data
             console.log(data.Claim_id);
-            setClaimId(data.Claim_id);
         });
-        alert("Form upload successful");
-        navigate('/branchhome');
     }
 
     const clearStates = () => {
@@ -238,6 +256,23 @@ export default function ClaimFormContextProvider({ children }) {
     const value = {
         autofillfunc: autofill,
         clearStates: clearStates,
+        submitData: submitData,
+
+        //collateral_damage state
+        collateral_damage: collateral_damage,
+        setCollateralDamage: setCollateralDamage,
+
+        //Persons Injured State
+        persons_injured: persons_injured,
+        setPersonsInjured: setPersonsInjured,
+
+        //Independent Witnesses State
+        independent_witnesses: independent_witnesses,
+        setIndependentWitnesses: setIndependentWitnesses,
+
+        //Passengers in vehicle state
+        passengers: passengers,
+        setPassengers: setPassengers,
 
         // policy holder
         holders_name: holders_name,
@@ -266,8 +301,6 @@ export default function ClaimFormContextProvider({ children }) {
         control: control,
         handleSubmit: handleSubmit,
         onSubmit: onSubmit,
-        ref: ref,
-        claim_id: claim_id
     }
 
     return (

@@ -8,21 +8,22 @@ import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
+import { useClaimFormContext } from '../../../context-stores/CliamContext';
 
  function ClaimForm5() {
-    const [collateral_damage, setCollateralDamage] = useState([]);
+    const {independent_witnesses, setIndependentWitnesses} = useClaimFormContext();
     const { handleSubmit, reset, control } = useForm()
     const [id, setId] = useState(1)
 
-    const collateral_damage_columns = [
+    const independent_witnesses_columns = [
         { field: 'id', headerName: '#', width: 5 },
-        { field: 'owners_name', headerName: 'Name', width: 200 },
-        { field: 'owners_address', headerName: 'Address', width: 200, },
+        { field: 'name', headerName: 'Name', width: 200 },
+        { field: 'address', headerName: 'Address', width: 200, },
         
     ]
 
     const collateralDamageSubmit = (data, e) => {
-        setCollateralDamage(prevState => [...prevState, { id: id, ...data }]);
+        setIndependentWitnesses(prevState => [...prevState, { id: id, ...data }]);
         setId(prevState => prevState + 1);
         reset('', {
             keepValues: false,
@@ -60,10 +61,10 @@ import AppBar from '@mui/material/AppBar';
                marginLeft:"20%", 
                background: '#ece5dd',
                marginTop:"1%", }}>
-            {collateral_damage &&
+            {independent_witnesses &&
                 <DataGrid
-                    rows={collateral_damage}
-                    columns={collateral_damage_columns}
+                    rows={independent_witnesses}
+                    columns={independent_witnesses_columns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
                 />
@@ -72,8 +73,8 @@ import AppBar from '@mui/material/AppBar';
              onSubmit={handleSubmit(collateralDamageSubmit)}
              style={{display:"flex",flexDirection:"column"}}
              >
-                <FormTextInput control={control} name="owners_name" label="Name" required />
-                <FormTextInput control={control} name="owners_address" label="Address" />
+                <FormTextInput control={control} name="name" label="Name" required />
+                <FormTextInput control={control} name="address" label="Address" />
                 <input
                  type="submit"
                  value="ADD" 

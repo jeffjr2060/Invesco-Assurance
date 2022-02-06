@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useClaimFormContext } from '../../../context-stores/CliamContext';
 
 import FormTextInput from '../Re-usable component/Formtextinput';
 import FormRadioInput from '../Re-usable component/Formradioinput';
 import FormDateInput from '../Re-usable component/Formdateinput';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
@@ -23,7 +23,7 @@ const options = [
 ];
 
 export default function ClaimForm2() {
-    const { control, handleSubmit, onSubmit, ref } = useClaimFormContext();
+    const { control, handleSubmit, onSubmit } = useClaimFormContext();
 
     return (
         <div>
@@ -215,7 +215,8 @@ export default function ClaimForm2() {
                             width: "150px",
                             height: "50px",
                             background: "#075e54",
-                        }} />
+                        }}
+                    />
                     <Link to="/claimform3">Next</Link>
                 </Box>
             </form>
