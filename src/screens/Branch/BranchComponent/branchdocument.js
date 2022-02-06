@@ -14,14 +14,13 @@ import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
-import ReportedClaimTable from '../subComponent/Reportedclaimtable';
 
 
 
 
 const drawerWidth = 250;
 
-function ReportedClaim() {
+function BranchDocuments() {
 
 const navigate = useNavigate();
 
@@ -61,10 +60,10 @@ const navigate = useNavigate();
              {/* list */}
       <List sx={{display:'block',}} >
           {
-            ['CLAIM NOTIFICATION', 'DOCUMENTS'  ].map((text, index) => {
-              if (text === "CLAIM NOTIFICATION") {
+            ['CLAIM FORM', 'CLAIM NOTIFICATION'  ].map((text, index) => {
+              if (text === "CLAIM FORM") {
                 return (
-                  <ListItem button key={text} onClick={() => navigate("/claimnotificatioreport")} >
+                  <ListItem button key={text} onClick={() => navigate("/reportedclaim")} >
                     <ListItemIcon>
                         <NotificationsActiveIcon />
                    </ListItemIcon>
@@ -78,7 +77,7 @@ const navigate = useNavigate();
               
               }else{
               return (
-                <ListItem button key={text}  onClick={() => navigate("/BranchDocuments")}>
+                <ListItem button key={text}  onClick={() => navigate("/claimnotificatioreport")}>
                   <ListItemIcon>
                       <DocumentScannerIcon />
                    </ListItemIcon>
@@ -123,27 +122,20 @@ const navigate = useNavigate();
 
    
   </Box>
-    {/*  */}
-
- {/* Report Table */}
- <Box
- sx={{
-   display:"flex",
-   width:'100%',
-   height:"88vh",
-   overflowY:"auto",
- }}>
-   {/* table */}
-      <ReportedClaimTable />
-
- </Box>
-
+        {/*  */}
+   {/* Searchbar  */}
+      <Box sx={{
+        display:"flex",
+        width:"100%",
+      }}>
+      
+      </Box> 
 
    </Box>
   </Box>
   );
 }
 
-export default ReportedClaim
+export default BranchDocuments
 
 
