@@ -9,18 +9,16 @@ import { Link } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 
- function ClaimForm3() {
+ function ClaimForm6() {
     const [collateral_damage, setCollateralDamage] = useState([]);
     const { handleSubmit, reset, control } = useForm()
     const [id, setId] = useState(1)
 
     const collateral_damage_columns = [
         { field: 'id', headerName: '#', width: 5 },
-        { field: 'owners_name', headerName: 'Owner\'s name', width: 200 },
-        { field: 'owners_address', headerName: 'Owner\'s address', width: 150, },
-        { field: 'reg_no', headerName: 'Reg Number', width: 150, },
-        { field: 'insurers_name', headerName: 'Name of Insurer', width: 150, },
-        { field: 'other_property_damaged', headerName: 'Other Property Damaged', width: 150, },
+        { field: 'owners_name', headerName: 'Name', width: 200 },
+        { field: 'owners_address', headerName: 'Address', width: 200, },
+        
     ]
 
     const collateralDamageSubmit = (data, e) => {
@@ -54,8 +52,7 @@ import AppBar from '@mui/material/AppBar';
         mt:"5%",
         ml:"2%"
     }}
-  >OTHER VEHCLES INVOLVED AND PROPERTY DAMAGED
-
+  >PASSENGERS IN YOUR VEHICLE
  </Typography>
 
         <div style={{ height: 350,
@@ -75,11 +72,8 @@ import AppBar from '@mui/material/AppBar';
              onSubmit={handleSubmit(collateralDamageSubmit)}
              style={{display:"flex",flexDirection:"column"}}
              >
-                <FormTextInput control={control} name="owners_name" label="Owner\'s name" required />
-                <FormTextInput control={control} name="owners_address" label="Owner\'s address" />
-                <FormTextInput control={control} name="reg_no" label="Registration Number" />
-                <FormTextInput control={control} name="insurers_name" label="Owner\'s name" />
-                <FormTextInput control={control} name="other_property_damaged" label="Other Property damage" />
+                <FormTextInput control={control} name="owners_name" label="Name" required />
+                <FormTextInput control={control} name="owners_address" label="Address" />
                 <input
                  type="submit"
                  value="ADD" 
@@ -90,8 +84,8 @@ import AppBar from '@mui/material/AppBar';
                  }}/>
             </form>
             <Box sx={{ml:"55%",mt:"-2%",flexDirection:"row",}}>
-            <Link to="/claimform2" >Previous</Link> 
-             <Link to="/claimform4">Next</Link>
+            <Link to="/claimform5" >Previous</Link>  
+             <Link to="/claimform7">Next</Link>
             </Box>
            
         </div>
@@ -100,7 +94,13 @@ import AppBar from '@mui/material/AppBar';
    
   </Box>
 
+
+
+
+
+
+
     );
 }
 
-export default ClaimForm3
+export default ClaimForm6

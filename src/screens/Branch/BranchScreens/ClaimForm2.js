@@ -1,9 +1,9 @@
 import React from 'react';
-import { useClaimFormContext } from '../../context-stores/CliamContext';
+import { useClaimFormContext } from '../../../context-stores/CliamContext';
 
-import FormTextInput from './Re-usable component/Formtextinput';
-import FormRadioInput from './Re-usable component/Formradioinput';
-import FormDateInput from './Re-usable component/Formdateinput';
+import FormTextInput from '../Re-usable component/Formtextinput';
+import FormRadioInput from '../Re-usable component/Formradioinput';
+import FormDateInput from '../Re-usable component/Formdateinput';
 import { Link } from 'react-router-dom';
 import  Box  from '@mui/material/Box';
 import { Typography } from '@mui/material';
