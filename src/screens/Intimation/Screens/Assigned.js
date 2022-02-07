@@ -166,9 +166,11 @@ const navigate = useNavigate();
    display:"flex",
    width:'100%',
    height:"88vh",
+   flexDirection:"column",
    overflowY:"auto",
  }}>
    {/* table */}
+   <Typography  variant="h5" sx={{fontWeight:"900"}}  >Assigned Tasks</Typography>
     <AssignedTable />
  </Box>
    </Box>
