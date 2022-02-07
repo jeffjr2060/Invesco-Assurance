@@ -16,6 +16,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
+import AssignedTable from '../Components/ScreenComponents/AssignedTable';
 
 
 
@@ -159,14 +160,17 @@ const navigate = useNavigate();
    
   </Box>
         {/*  */}
-   {/* Searchbar  */}
-      <Box sx={{
-        display:"flex",
-        width:"100%",
-      }}>
-        <h2>Task Assigned</h2>
-      </Box> 
-
+    {/* Report Table */}
+ <Box
+   sx={{
+   display:"flex",
+   width:'100%',
+   height:"88vh",
+   overflowY:"auto",
+ }}>
+   {/* table */}
+    <AssignedTable />
+ </Box>
    </Box>
   </Box>
   );
