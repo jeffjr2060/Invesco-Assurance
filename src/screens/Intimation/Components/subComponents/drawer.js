@@ -7,7 +7,7 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 import Toolbar from '@mui/material/Toolbar';
@@ -123,6 +123,7 @@ function DrawerIntimation(props) {
     
 
    {/* username and profile */}
+   
  
  <Box
  sx={{
@@ -133,7 +134,7 @@ function DrawerIntimation(props) {
      alignItems:"center",
      justifyContent:"center",
  }}>
-
+<Link to="/branchhome">Branch</Link>
  </Box>
       
 
