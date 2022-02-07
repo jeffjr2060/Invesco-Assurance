@@ -17,7 +17,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
-
+import ReportedClaimTable from '../../Branch/subComponent/Reportedclaimtable';
 
 
 
@@ -160,13 +160,20 @@ const navigate = useNavigate();
    
   </Box>
         {/*  */}
-   {/* Searchbar  */}
-      <Box sx={{
-        display:"flex",
-        width:"100%",
-      }}>
-        <h2>Task Allocated</h2>
-      </Box> 
+   {/* Report Table */}
+ <Box
+ sx={{
+   display:"flex",
+   width:'100%',
+   height:"88vh",
+   flexDirection:"column",
+   m:"6px",
+   overflowY:"auto",
+ }}>
+   {/* table */}
+   <Typography  variant="h5" sx={{fontWeight:"900"}}>Task</Typography>
+    <ReportedClaimTable />
+ </Box>
 
    </Box>
   </Box>

@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import HomeIcon from '@mui/icons-material/Home';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
@@ -61,12 +61,12 @@ const navigate = useNavigate();
              {/* list */}
       <List sx={{display:'block',}} >
           {
-            ['CLAIM NOTIFICATION', 'DOCUMENTS'  ].map((text, index) => {
-              if (text === "CLAIM NOTIFICATION") {
+            ['HOME', ].map((text, index) => {
+              if (text === "HOME") {
                 return (
-                  <ListItem button key={text} onClick={() => navigate("/claimnotificatioreport")} >
+                  <ListItem button key={text} onClick={() => navigate("/branchhome")} >
                     <ListItemIcon>
-                        <NotificationsActiveIcon />
+                    <HomeIcon />
                    </ListItemIcon>
                     <ListItemText primary={text}
                       sx={{
@@ -131,11 +131,12 @@ const navigate = useNavigate();
    display:"flex",
    width:'100%',
    height:"88vh",
+   flexDirection:"column",
    overflowY:"auto",
  }}>
    {/* table */}
-      <ReportedClaimTable />
-
+   <Typography  variant="h5" sx={{fontWeight:"900"}}  >Reported Claim</Typography>
+       <ReportedClaimTable />
  </Box>
 
 
