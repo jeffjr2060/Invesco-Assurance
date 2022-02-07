@@ -171,7 +171,7 @@ const navigate = useNavigate();
    overflowY:"auto",
  }}>
    {/* table */}
-   <Typography  variant="h5" sx={{fontWeight:"900"}}  >Claimform Task</Typography>
+   <Typography  variant="h5" sx={{fontWeight:"900"}}>Task</Typography>
     <ReportedClaimTable />
  </Box>
 
