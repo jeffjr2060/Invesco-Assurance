@@ -18,6 +18,12 @@ export default function ClaimFormContextProvider({ children }) {
     const [independent_witnesses, setIndependentWitnesses] = useState([]);
     const [passengers, setPassengers] = useState([]);
 
+    const [copy_notice, setCopyNotice] = useState();
+    const [police_abstract, setPoliceAbstract] = useState();
+    const [drivers_license, setDriversLicense] = useState();
+    const [psv_license, setPsvLicense] = useState();
+    const [inspection_report, setInspectionReport] = useState();
+
     const { handleSubmit, reset, control } = useForm({
         defaultValues: {
             accident_blame: "",
@@ -75,6 +81,8 @@ export default function ClaimFormContextProvider({ children }) {
             prev_accidents: "",
             prev_conviction_details: "",
             prev_convictions: "",
+            reporting_branch_region: "",
+            reporting_party: "",
             road_surface: "",
             service_duration: "",
             tell_no: "",
@@ -99,14 +107,14 @@ export default function ClaimFormContextProvider({ children }) {
     const [holders_address, setholders_address] = useState('');
     const [holders_occupation, setholders_occupation] = useState('');
     const [policy_number, setpolicy_number] = useState('');
-    const [expiry_date, setexpiry_date] = useState(new Date(Date.now()));
+    const [expiry_date, setexpiry_date] = useState(null);
     const [hire_purchase_company, sethire_purchase_company] = useState('');
     const navigate = useNavigate();
 
     //vehicles details
     const [make_model, setmake_model] = useState('');
     const [hp_cc, sethp_cc] = useState('');
-    const [manufacture_year, setmanufacture_year] = useState(new Date(Date.now()));
+    const [manufacture_year, setmanufacture_year] = useState(null);
     const [vehicle_registration, setvehicle_registration] = useState('');
     const [vehicle_capacity, setvehicle_capacity] = useState('');
     const [trailer_registration, settrailer_registration] = useState('');
@@ -210,25 +218,64 @@ export default function ClaimFormContextProvider({ children }) {
             chassis_no: chasis_no,
         }
         console.log(payload);
-        setReqOneData({...payload});
+        setReqOneData({ ...payload });
         navigate('/claimform3');
     }
 
     const submitData = () => {
-        // axios.post('/newclaim', req_one_data).then(response => {
-        //     let data = response.data
-        //     console.log(data.Claim_id);
-        // });
-        let payload = {
-            collateral_damage: collateral_damage,
-            persons_injured: persons_injured,
-            independent_witnesses: independent_witnesses,
-            passengers: passengers,
-        }
-        console.log(payload);
-        axios.post('/claimdata/1', payload).then(response => {
+        axios.post('/newclaim', req_one_data).then(response => {
             let data = response.data
             console.log(data.Claim_id);
+            let payload = {
+                collateral_damage: collateral_damage,
+                persons_injured: persons_injured,
+                independent_witnesses: independent_witnesses,
+                passengers: passengers,
+            }
+            let cliam_id = data.Claim_id
+            console.log(payload);
+            axios.post(`claimdata/${cliam_id}`, payload).then(response => {
+                let data = response.data;
+            });
+
+            const formdata = new FormData();
+            formdata.append("file_type", "copy_notice");
+            formdata.append("file", copy_notice);
+
+            axios.post(`/file-upload/${cliam_id}`, formdata).then((response) => {
+                console.log(response.data);
+
+                const formdata2 = new FormData();
+                formdata2.append("file_type", "police_abstract");
+                formdata2.append("file", police_abstract);
+                axios.post(`/file-upload/${cliam_id}`, formdata2).then((response) => {
+                    console.log(response.data);
+                })
+
+                const formdata3 = new FormData();
+                formdata3.append("file_type", "drivers_license");
+                formdata3.append("file", drivers_license);
+                axios.post(`/file-upload/${cliam_id}`, formdata3).then((response) => {
+                    console.log(response.data);
+                })
+
+                const formdata4 = new FormData();
+                formdata4.append("file_type", "psv_license");
+                formdata4.append("file", drivers_license);
+                axios.post(`/file-upload/${cliam_id}`, formdata4).then((response) => {
+                    console.log(response.data);
+                })
+
+                const formdata5 = new FormData();
+                formdata5.append("file_type", "inspection_report");
+                formdata5.append("file", inspection_report);
+                axios.post(`/file-upload/${cliam_id}`, formdata5).then((response) => {
+                    console.log(response.data);
+                })
+            })
+
+            alert('Uploaded data successfully')
+            navigate("/branchhome")
         });
     }
 
@@ -274,6 +321,22 @@ export default function ClaimFormContextProvider({ children }) {
         passengers: passengers,
         setPassengers: setPassengers,
 
+        //file upload states
+        copy_notice: copy_notice,
+        setCopyNotice: setCopyNotice,
+
+        police_abstract: police_abstract,
+        setPoliceAbstract: setPoliceAbstract,
+
+        drivers_license: drivers_license,
+        setDriversLicense: setDriversLicense,
+
+        psv_license: psv_license,
+        setPsvLicense: setPsvLicense,
+
+        inspection_report: inspection_report,
+        setInspectionReport: setInspectionReport,
+
         // policy holder
         holders_name: holders_name,
         tell_no: tell_no,
@@ -301,6 +364,9 @@ export default function ClaimFormContextProvider({ children }) {
         control: control,
         handleSubmit: handleSubmit,
         onSubmit: onSubmit,
+
+        //Data submission
+        submitData: submitData,
     }
 
     return (

@@ -9,64 +9,79 @@ import { Link } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import FormFileInput from '../Re-usable component/Formfileinput';
+import TextField from "@material-ui/core/TextField";
+import { useClaimFormContext } from '../../../context-stores/CliamContext';
 
- function ClaimForm7() {
-    const { handleSubmit, reset, control } = useForm()
-    
-    return (
- <Box
-     component="main"
-     sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
- >
-  <AppBar
-     position="fixed"
-    sx={{ width: "100%",
-    background:"#fff",
-  }}>
-    <Toolbar>
-  <Typography variant="h6" noWrap component="div">
-    
-  </Typography>
-   </Toolbar>
-   </AppBar>
+function ClaimForm7() {
+  const { setCopyNotice,
+    setPoliceAbstract,
+    setDriversLicense,
+    setPsvLicense,
+    setInspectionReport,
+    submitData
+  } = useClaimFormContext()
 
- 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
-        <div style={{ height: 350,
-              width: '60%',
-               marginLeft:"20%", 
-               marginTop:"1%", }}>
-            
-            <form
-             onSubmit={handleSubmit}
-             style={{display:"flex",flexDirection:"column", height:"80%", marginTop:"60px"}}
-             >
-               
-                <FormFileInput  control={control} name="copy_notice" label="Copy Notice"/>
-                <FormFileInput control={control} name="police_abstract" label="Police Abstract" />
-                <FormFileInput control={control} name="drivers_license" label="Drivers License" />
-                <FormFileInput control={control} name="psv_license" label="PSV Lisence" />
-                <FormFileInput control={control} name="inspection_report" label="Inspection Report" />
-               
-            </form>
-            <Box sx={{ml:"55%",mt:"-2%",flexDirection:"row",}}>
-            <Link to="/claimform5" >Previous</Link>  
-             <Link to="/claimform7">Next</Link>
-            </Box>
-           
-        </div>
+  return (
+    <Box
+      component="main"
+      sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+    >
+      <AppBar
+        position="fixed"
+        sx={{
+          width: "100%",
+          background: "#fff",
+        }}>
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
 
-
-   
-  </Box>
+          </Typography>
+        </Toolbar>
+      </AppBar>
 
 
 
+      <div style={{
+        height: 350,
+        width: '60%',
+        marginLeft: "20%",
+        marginTop: "1%",
+      }}>
+
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column", height: "80%", marginTop: "60px" }}
+        >
+
+          <TextField onChange={e => setCopyNotice(e.target.files[0])} type="file" label="Copy notice" />
+          <TextField onChange={e => setPoliceAbstract(e.target.files[0])} type="file" label="Police Abstract" />
+          <TextField onChange={e => setDriversLicense(e.target.files[0])} type="file" label="Drivers License" />
+          <TextField onChange={e => setPsvLicense(e.target.files[0])} type="file" label="PSV license" />
+          <TextField onChange={e => setInspectionReport(e.target.files[0])} type="file" label="Inspection Report" />
+          <Button type="submit" onClick={submitData}>Submit</Button>
+        </form>
+        <Box sx={{ ml: "55%", mt: "-2%", flexDirection: "row", }}>
+          <Link to="/claimform6" >Previous</Link>
+          <Link to="/branchhome">Next</Link>
+        </Box>
+
+      </div>
+
+
+
+    </Box>
 
 
 
 
-    );
+
+
+
+  );
 }
 
 export default ClaimForm7

@@ -83,7 +83,7 @@ function ClaimForm4() {
                     <FormTextInput control={control} name="injureds_address" label="Address" />
                     <FormTextInput control={control} name="relation_to_policyholder" label="Relationship to policy holder" />
                     <FormTextInput control={control} name="car_reg_no" label="if driver or passenger Reg, No. of the Vehicle" />
-                    <FormTextInput control={control} name="other_property_damaged" label="Apparent injuries" />
+                    <FormTextInput control={control} name="apparent_injuries" label="Apparent injuries" />
                     <input
                         type="submit"
                         value="ADD"
