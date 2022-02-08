@@ -40,7 +40,6 @@ function ReportedClaimTable() {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
-
       />
     </div>
   );

@@ -17,13 +17,14 @@ import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
-import ReportedClaimTable from '../../Branch/subComponent/Reportedclaimtable';
+import Claimformtemplate from '../BranchComponent/claimformtemplate';
+
 
 
 
 const drawerWidth = 250;
 
-function  TaskInbox() {
+function  ClaimForm8() {
 
 const navigate = useNavigate();
 
@@ -170,10 +171,9 @@ const navigate = useNavigate();
    m:"6px",
    overflowY:"auto",
  }}>
-   {/* table */}
-   <Typography  variant="h5" sx={{fontWeight:"900"}}>Task</Typography>
-    <ReportedClaimTable />
-    
+   {/* Template */}
+   
+    <Claimformtemplate />
  </Box>
 
    </Box>
@@ -181,4 +181,4 @@ const navigate = useNavigate();
   );
 }
 
-export default TaskInbox
+export default ClaimForm8
