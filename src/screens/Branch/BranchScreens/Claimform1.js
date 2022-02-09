@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { useClaimFormContext } from '../../../context-stores/CliamContext';
-import { Link } from 'react-router-dom';
 
 // material ui imports
 import Container from '@mui/material/Container';
@@ -414,11 +413,7 @@ export default function Claimform1() {
                                     fontSize: "20px",
                                     ml: "35%",
                                 }}
-                            >Year of manufacture: {new Intl.DateTimeFormat("en-GB", {
-                                year: "numeric",
-                                month: "long",
-                                day: "2-digit"
-                            }).format(manufacture_year)}
+                            >Year of manufacture: {manufacture_year}
                             </Typography>
                         }
                     </Box>
@@ -523,7 +518,6 @@ export default function Claimform1() {
                 {/* end of box */}
 
             </Box>
-            <Box> <Link to="/claimform2">Next</Link></Box>
 
         </Container>
     )

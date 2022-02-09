@@ -4,7 +4,10 @@ import { useClaimFormContext } from '../../../context-stores/CliamContext';
 import FormTextInput from '../Re-usable component/Formtextinput';
 import FormRadioInput from '../Re-usable component/Formradioinput';
 import FormDateInput from '../Re-usable component/Formdateinput';
-import { Link, useNavigate } from 'react-router-dom';
+import FormDropdownSelect from '../Re-usable component/Formdropdownselect';
+import FormDateTimePicker from '../Re-usable component/Formdatetimeinput';
+import FormNumberInput from '../Re-usable component/Formnumberinput';
+
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
@@ -43,7 +46,7 @@ export default function ClaimForm2() {
                         ml: "8%",
                         mt: "2%",
                     }}>
-                    <FormTextInput name={"use_of_vehicle"} control={control} label={"Use of vehicle"} />
+                    <FormDropdownSelect name={"use_of_vehicle"} control={control} label="Use of vehicle" />
                 </Box>
 
                 {/* Commercial vehicle details*/}
@@ -60,8 +63,8 @@ export default function ClaimForm2() {
                     <FormTextInput name={"goods_carried"} control={control} label={"Description of goods carried"} />
                     <FormTextInput name={"owner_of_goods"} control={control} label={"Name of owner of goods"} />
                     <FormTextInput name={"trailer_attached"} control={control} label={"Was trailer attached"} />
-                    <FormTextInput name={"load_weight"} control={control} label={"Weight of load on vehicle"} />
-                    <FormTextInput name={"trailer_weight"} control={control} label={"Weight of load on trailer"} />
+                    <FormNumberInput name={"load_weight"} control={control} label={"Weight of load on vehicle"} />
+                    <FormNumberInput name={"trailer_weight"} control={control} label={"Weight of load on trailer"} />
                 </Box>
                 {/* Driver details */}
                 <Box
@@ -76,9 +79,9 @@ export default function ClaimForm2() {
                     <FormTextInput name={"drivers_name"} control={control} label={"Name"} />
                     <FormTextInput name={"drivers_occupation"} control={control} label={"Occupation"} />
                     <FormDateInput name={"drivers_dob"} control={control} label="Actual Date of Birth" />
-                    <FormTextInput name={"drivers_po_box"} control={control} label={"P.O Box"} />
-                    <FormTextInput name={"drivers_po_code"} control={control} label={"Code"} />
-                    <FormTextInput name={"drivers_tell_no"} control={control} label={"Tell no"} />
+                    <FormNumberInput name={"drivers_po_box"} control={control} label={"P.O Box"} />
+                    <FormNumberInput name={"drivers_po_code"} control={control} label={"Code"} />
+                    <FormNumberInput name={"drivers_tell_no"} control={control} label={"Tell no"} />
                     <Box
                         sx={{
                             display: "flex",
@@ -88,9 +91,9 @@ export default function ClaimForm2() {
                             mt: "5%",
                         }}>
                         <FormRadioInput name={"employed_by_policyholder"} control={control} label="Is he/she employed by you?" />
-                        <FormTextInput name={"service_duration"} control={control} label={"How long has he/she been employed by you?"} />
+                        <FormNumberInput name={"service_duration"} control={control} label={"How long has he/she been employed by you?"} />
                         <FormRadioInput name={"permission"} control={control} label="Was he/she driveing with your permission?" />
-                        <FormTextInput name={"driving_duration"} control={control} label="How long has he/she been driving?" />
+                        <FormNumberInput name={"driving_duration"} control={control} label="How long has he/she been driving?" />
                         <FormRadioInput name={"accident_blame"} control={control} label="Was he/she in a way to blame for the accident?" />
                         <FormRadioInput name={"accident_liability"} control={control} label="Did he/she admit liability for the accident?" />
                         <FormRadioInput name={"prev_accidents"} control={control} label="Has he/she had any previous accidents?" />
@@ -165,15 +168,14 @@ export default function ClaimForm2() {
                             mt: "2%",
                         }}
                     >
-                        <FormDateInput name={"date_of_accident"} control={control} label="Date" />
-                        <FormDateInput name={"time_of_accident"} control={control} label="Time" />
+                        <FormDateTimePicker name={"date_time_of_accident"} control={control} label="Date and Time of Accident" />
                         <FormTextInput name={"place"} control={control} label="place" />
                         <FormTextInput name={"road_surface"} control={control} label="Type of road surface" />
                         <FormTextInput name={"visibility"} control={control} label="Visibility" />
                         <FormTextInput name={"condition"} control={control} label="Wet of dry" />
                         <FormTextInput name={"lights"} control={control} label="What lights were showing on your vehicle?" />
                         <FormTextInput name={"warning_signs"} control={control} label="What warning did your driver give?" />
-                        <FormTextInput name={"estimated_speed"} control={control} label="Estimated Speed before accident" />
+                        <FormNumberInput name={"estimated_speed"} control={control} label="Estimated Speed before accident" />
                         <FormTextInput name={"weather_condition"} control={control} label="Weather Conditions" />
                         <FormRadioInput name={"police_investigation"} control={control} label="Did police take particulars ?" />
                         <FormTextInput name={"police_officers_name"} control={control} label="If so, give officer's name" />
@@ -201,24 +203,7 @@ export default function ClaimForm2() {
                     <FormDateInput name={"inspection_date"} control={control} label="When can it be Inspected?" />
                 </Box>
                 {/*  */}
-                <Box
-                    sx={{
-                        ml: "45%",
-                        flexDirection: 'row',
-                        justifyContent: "space-around",
-                    }}>
-                    <input
-                        type="submit"
-                        value="Submit"
-                        style={{
-                            display: "flex",
-                            width: "150px",
-                            height: "50px",
-                            background: "#075e54",
-                        }}
-                    />
-                    <Link to="/claimform3">Next</Link>
-                </Box>
+
             </form>
         </div>
     );
