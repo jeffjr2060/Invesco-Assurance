@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import FormTextInput from '../Re-usable component/Formtextinput';
 import { useForm } from "react-hook-form";
-import { Button } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import { useClaimFormContext } from '../../../context-stores/CliamContext';
 
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+
 function ClaimForm6() {
-    const { passengers, setPassengers, submitData } = useClaimFormContext()
+    const navigate = useNavigate();
+    const [collateral_damage, setCollateralDamage] = useState([]);
     const { handleSubmit, reset, control } = useForm()
     const [id, setId] = useState(1)
 
@@ -48,15 +51,6 @@ function ClaimForm6() {
                 </Toolbar>
             </AppBar>
 
-            <Typography
-                variant='h6'
-                sx={{
-                    mt: "5%",
-                    ml: "2%"
-                }}
-            >PASSENGERS IN YOUR VEHICLE
-            </Typography>
-
             <div style={{
                 height: 350,
                 width: '60%',
@@ -64,10 +58,10 @@ function ClaimForm6() {
                 background: '#ece5dd',
                 marginTop: "1%",
             }}>
-                {passengers &&
+                {collateral_damage &&
                     <DataGrid
-                        rows={passengers}
-                        columns={passengers_columns}
+                        rows={collateral_damage}
+                        columns={collateral_damage_columns}
                         pageSize={5}
                         rowsPerPageOptions={[5]}
                     />
@@ -76,8 +70,8 @@ function ClaimForm6() {
                     onSubmit={handleSubmit(collateralDamageSubmit)}
                     style={{ display: "flex", flexDirection: "column" }}
                 >
-                    <FormTextInput control={control} name="name" label="Name" required />
-                    <FormTextInput control={control} name="address" label="Address" />
+                    <FormTextInput control={control} name="owners_name" label="Name" required />
+                    <FormTextInput control={control} name="owners_address" label="Address" />
                     <input
                         type="submit"
                         value="ADD"
@@ -87,15 +81,26 @@ function ClaimForm6() {
                             background: "#000",
                         }} />
                 </form>
-                <Button onClick={submitData}>Submit</Button>
-                <Box sx={{ ml: "55%", mt: "-2%", flexDirection: "row", }}>
-                    <Link to="/claimform5" >Previous</Link>
-                    <Link to="/claimform7">Next</Link>
-                </Box>
+
 
             </div>
+            <Box sx={{
+                display: "flex",
+                width: "100%",
+                height: "5vh",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: 'center',
+            }}>
+                <ListItemButton onClick={() => navigate("/claimform5")}>
+                    <ListItemText primary="Previous" />
+                </ListItemButton>
 
+                <ListItemButton onClick={() => navigate("/claimform7")}>
+                    <ListItemText primary="Next" />
+                </ListItemButton>
 
+            </Box>
 
         </Box>
 

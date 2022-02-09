@@ -4,14 +4,12 @@ import { useClaimFormContext } from '../../../context-stores/CliamContext';
 import FormTextInput from '../Re-usable component/Formtextinput';
 import FormRadioInput from '../Re-usable component/Formradioinput';
 import FormDateInput from '../Re-usable component/Formdateinput';
-import FormDropdownSelect from '../Re-usable component/Formdropdownselect';
-import FormDateTimePicker from '../Re-usable component/Formdatetimeinput';
-import FormNumberInput from '../Re-usable component/Formnumberinput';
-
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import { Controller } from "react-hook-form";
+import { ListItemButton, ListItemText } from '@mui/material';
+
 
 
 const options = [
@@ -26,7 +24,8 @@ const options = [
 ];
 
 export default function ClaimForm2() {
-    const { control, handleSubmit, onSubmit } = useClaimFormContext();
+    const navigate = useNavigate();
+    const { control, handleSubmit, onSubmit, ref } = useClaimFormContext();
 
     return (
         <div>
@@ -205,6 +204,22 @@ export default function ClaimForm2() {
                 {/*  */}
 
             </form>
+
+            <Box sx={{
+                display: "flex",
+                width: "100%",
+                height: "5vh",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: 'center',
+            }}>
+                <ListItemButton onClick={() => navigate("/claimform1")} >
+                    <ListItemText primary="Previous" />
+                </ListItemButton>
+                <ListItemButton onClick={() => navigate("/claimform3")} >
+                    <ListItemText primary="Next" />
+                </ListItemButton>
+            </Box>
         </div>
     );
 }

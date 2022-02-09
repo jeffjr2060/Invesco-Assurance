@@ -5,13 +5,16 @@ import { useForm } from "react-hook-form";
 import { Button } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
-import { useClaimFormContext } from '../../../context-stores/CliamContext';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 
 function ClaimForm4() {
-    const { persons_injured, setPersonsInjured } = useClaimFormContext()
+
+    const navigate = useNavigate();
+    const [collateral_damage, setCollateralDamage] = useState([]);
     const { handleSubmit, reset, control } = useForm()
     const [id, setId] = useState(1)
 
@@ -56,9 +59,7 @@ function ClaimForm4() {
                     mt: "5%",
                     ml: "2%"
                 }}
-            >PERSONS INJURED
-
-            </Typography>
+            >PERSONS INJURED</Typography>
 
             <div style={{
                 height: 350,
@@ -67,10 +68,10 @@ function ClaimForm4() {
                 background: '#ece5dd',
                 marginTop: "1%",
             }}>
-                {persons_injured &&
+                {collateral_damage &&
                     <DataGrid
-                        rows={persons_injured}
-                        columns={persons_injured_columns}
+                        rows={collateral_damage}
+                        columns={collateral_damage_columns}
                         pageSize={5}
                         rowsPerPageOptions={[5]}
                     />
@@ -79,11 +80,11 @@ function ClaimForm4() {
                     onSubmit={handleSubmit(collateralDamageSubmit)}
                     style={{ display: "flex", flexDirection: "column" }}
                 >
-                    <FormTextInput control={control} name="name" label="Name" required />
-                    <FormTextInput control={control} name="injureds_address" label="Address" />
-                    <FormTextInput control={control} name="relation_to_policyholder" label="Relationship to policy holder" />
-                    <FormTextInput control={control} name="car_reg_no" label="if driver or passenger Reg, No. of the Vehicle" />
-                    <FormTextInput control={control} name="apparent_injuries" label="Apparent injuries" />
+                    <FormTextInput control={control} name="owners_name" label="Name" required />
+                    <FormTextInput control={control} name="owners_address" label="Address" />
+                    <FormTextInput control={control} name="reg_no" label="Relationship to policy holder" />
+                    <FormTextInput control={control} name="insurers_name" label="if driver or passenger Reg, No. of the Vehicle" />
+                    <FormTextInput control={control} name="other_property_damaged" label="Apparent injuries" />
                     <input
                         type="submit"
                         value="ADD"
@@ -94,12 +95,27 @@ function ClaimForm4() {
                         }} />
                 </form>
                 <Box sx={{ ml: "55%", mt: "-2%", flexDirection: "row", }}>
-                    <Link to="/claimform3" >Previous</Link>
-                    <Link to="/claimform5">Next</Link>
+
                 </Box>
 
             </div>
+            <Box sx={{
+                display: "flex",
+                width: "100%",
+                height: "5vh",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: 'center',
+            }}>
+                <ListItemButton onClick={() => navigate("/claimform3")}>
+                    <ListItemText primary="Previous" />
+                </ListItemButton>
 
+                <ListItemButton onClick={() => navigate("/claimform5")}>
+                    <ListItemText primary="Next" />
+                </ListItemButton>
+
+            </Box>
 
 
         </Box>
