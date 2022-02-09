@@ -5,11 +5,14 @@ import { useForm } from "react-hook-form";
 import { Button } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 
  function ClaimForm3() {
+     const navigate= useNavigate();
     const [collateral_damage, setCollateralDamage] = useState([]);
     const { handleSubmit, reset, control } = useForm()
     const [id, setId] = useState(1)
@@ -90,11 +93,27 @@ import AppBar from '@mui/material/AppBar';
                  }}/>
             </form>
             <Box sx={{ml:"55%",mt:"-2%",flexDirection:"row",}}>
-            <Link to="/claimform2" >Previous</Link> 
-             <Link to="/claimform4">Next</Link>
+           
             </Box>
            
         </div>
+<Box sx={{
+   display:"flex",
+   width:"100%",
+   height:"5vh",
+   flexDirection:"row",
+   alignItems:"center",
+   justifyContent:'center',
+ }}>
+    <ListItemButton onClick={()=> navigate("/claimform2") }>
+       <ListItemText primary="Previous" />
+    </ListItemButton>
+
+    <ListItemButton onClick={()=> navigate("/claimform4")}>
+      <ListItemText primary="Next" />
+    </ListItemButton>
+
+ </Box>
 
 
    

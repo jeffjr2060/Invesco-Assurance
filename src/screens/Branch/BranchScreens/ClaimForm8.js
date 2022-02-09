@@ -1,140 +1,55 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useClaimFormContext } from '../../../context-stores/CliamContext';
 
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import FileDownloadOffIcon from '@mui/icons-material/FileDownloadOff';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import OutboxIcon from '@mui/icons-material/Outbox';
-
-import BookmarksIcon from '@mui/icons-material/Bookmarks';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { Button } from '@mui/material';
+
 import Claimformtemplate from '../BranchComponent/claimformtemplate';
+import Claimformpaging from '../Re-usable component/claimformpaging';
+
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '45%',
+  transform: 'translate(-50%, -50%)',
+  width: "60vw",
+  height:"75vh",
+  bgcolor: 'background.paper',
+  border: '2px solid #fff',
+  boxShadow: 24,
+  p: 4,
+};
 
 
 
 
-const drawerWidth = 250;
+
 
 function  ClaimForm8() {
-
-const navigate = useNavigate();
+  const { control, handleSubmit, onSubmit, ref } = useClaimFormContext();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', }}>
       <CssBaseline />
 
-      <Drawer
-        sx={{
-          width: drawerWidth,
-         
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-       
-        <Divider />
-       {/* Drawer List */}
- <Box 
- sx={{
-   display:"flex",
-   height:"100%",
-   background: "#075e54",
- }}>
-    <Box
-    sx={{
-      height:"70%",
-      mt:"35%", 
-    }}
-    >
-
-             {/* list */}
-      <List sx={{display:'block',}} >
-          {
-            ['HOME', 'ASSIGNED',  'REPUDIATED','UPLOAD DOCUMENT'].map((text, index) => {
-              if (text === "HOME") {
-                return (
-                  <ListItem button key={text} onClick={() => navigate("/intimation")} >
-                    <ListItemIcon>
-                        <HomeIcon />
-                   </ListItemIcon>
-                    <ListItemText primary={text}
-                      sx={{
-                        color: "#FBCD99",
-                      }} />
-                    
-                  </ListItem>
-                )
-               
-              } else if (text === "ASSIGNED") {
-              
-                return (
-                  <ListItem button key={text} onClick={() => navigate("/assigned")} >
-
-                   <ListItemIcon>
-                      <OutboxIcon />
-                   </ListItemIcon>
-                    <ListItemText primary={text}
-                      sx={{
-                        color: "#FBCD99",
-                      }} />
-                  </ListItem>
-                )
-              
-              
-              } else if (text === "REPUDIATED")  {
-              
-              return (
-                <ListItem button key={text} onClick={() => navigate("/repudiated")}>
-                   <ListItemIcon>
-                      <BookmarksIcon />
-                   </ListItemIcon>
-                  <ListItemText primary={text}
-                    sx={{
-                      color: "#FBCD99",
-                    }} />
-                </ListItem>
-              )
-              
-            
-              }
-
-  
-              else{
-              return (
-                <ListItem button key={text}  onClick={() => navigate("/documentupload")}>
-                  <ListItemIcon>
-                      <FileCopyIcon />
-                   </ListItemIcon>
-                  <ListItemText primary={text}
-                    sx={{
-                      color: "#FBCD99",
-                    }} />
-                </ListItem>
-              )
-            }
-          }
-            )
-          }
-        </List>
-         {/*  */}
-    </Box>
-    </Box>     
-
-      </Drawer>
   <Box
     component="main"
     sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
@@ -146,8 +61,7 @@ const navigate = useNavigate();
     >
   <AppBar
       position="fixed"
-      sx={{ width: `calc(100% - ${drawerWidth}px)`,
-       ml: `${drawerWidth}px` ,
+      sx={{ width: "100%",
        background:"#fff",
       }}
     >
@@ -166,17 +80,175 @@ const navigate = useNavigate();
  sx={{
    display:"flex",
    width:'100%',
-   height:"88vh",
-   flexDirection:"column",
+   height:"85vh",
+   flexDirection:"row",
+   justifyContent:"flex-start",
    m:"6px",
-   overflowY:"auto",
  }}>
    {/* Template */}
+   <Box sx={{
+     display:'flex',
+     width:"60%",
+     height:"90%",
+     m:"2%",
+    overflowY:"scroll",
+    scrollBehavior:"smooth",
+    boxShadow:10,
+    borderRadius:"8px",
+    flexDirection:"column",
+    justifyContent:"flex-start",
+  
+    
+   }}>
+    
+     <Typography variant='h6' sx={{ fontWeight:"600", ml:"8px" }}>Confirm Claim form Details :</Typography>  
+     <Box 
+     sx={{
+     display:"flex",
+     width:"100%",
+     mt:"1%",
+     justifyContent:"flex-start",
+     }}>
    
-    <Claimformtemplate />
- </Box>
+     <Claimformtemplate />
+     </Box>
 
+     </Box>
+      {/* documents */}
+    <Box
+    sx={{
+      display:'flex',
+      width:"45%",
+      height:"87%",
+      overflowY:"scroll",
+      scrollBehavior:"smooth",
+      flexDirection:"column",
+      justifyContent:"flex-start",
+      borderRadius:"15px",
+      mt:"3%",
+      boxShadow:1,
+     
+    }}>
+      <Typography variant='h5' sx={{fontWeight:"700"}}>Documents Uploaded</Typography>
+      <Box>
+      <List
+      sx={{ width: '100%',bgcolor: 'background.paper' }}
+    >
+      
+      <ListItemButton onClick={handleOpen}>
+        <ListItemIcon>
+          <FileDownloadOffIcon />
+        </ListItemIcon>
+        <ListItemText primary="Police Abstract" />
+      </ListItemButton>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemIcon>
+          <FileDownloadOffIcon/>
+        </ListItemIcon>
+        <ListItemText primary="Driver's License" />
+      </ListItemButton>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemIcon>
+          <FileDownloadOffIcon/>
+        </ListItemIcon>
+        <ListItemText primary="Copy Notice" />
+      </ListItemButton >
+      <ListItemButton onClick={handleOpen}>
+        <ListItemIcon>
+          <FileDownloadOffIcon/>
+        </ListItemIcon>
+        <ListItemText primary="PSV Lisence" />
+      </ListItemButton>
+      <ListItemButton onClick={handleOpen}>
+        <ListItemIcon>
+          <FileDownloadOffIcon/>
+        </ListItemIcon>
+        <ListItemText primary="Inspection Report" />
+      </ListItemButton>
+
+      </List>
+      </Box>
+      {/* notes /Cover letter */}
+    <Typography variant='h5' sx={{fontWeight:"700", ml:"5px"}}>ADD Notes</Typography>
+    {/* form notes */}
+       <form style={{
+         display:"flex",
+         flexDirection:"column",
+         justifyContent:"center",
+         alignItems:"center",
+         width:"100%",
+         height:"280px",
+         mt:"15px",
+        
+       }}>
+      <TextField 
+        id="outlined-basic" 
+        label="Title"
+        variant="outlined"
+        defaultValue="Cover letter"
+        helperText="Note title"
+        sx={{width:"90%", mt:"2%"}}
+
+      />
+
+       <TextareaAutosize
+          fullWidth
+          label="Note"
+          placeholder='Type a note'
+          style={{ 
+          width: "85%",
+          height: 250,
+          fontSize: '24px',
+          marginTop: "15px",
+          
+        }}/>
+
+        <Button
+         sx={{
+           display:'flex',
+           width:"150px",
+           height:"50px",
+           mt:"20px",
+         }}
+         variant="contained"
+        >Submit</Button>
+       </form>
+
+
+         {/* Modal */}
+       <Modal
+        open={open}
+        onClose={handleClose}
+      >
+       <Box sx={style}>
+          <Box>
+
+          </Box>
+        </Box>
+      </Modal>
+ 
+    </Box>
+    
+ 
+  <Box>
+    {/*  */}
+    
+  </Box>
+ 
+ </Box>
+ <Box sx={{
+   display:"flex",
+   width:"100%",
+   height:"5vh",
+   marginTop:"-27px", 
+   alignItems:"center",
+   justifyContent:'center',
+ }}>
+ <Claimformpaging />
+ </Box>
+ 
    </Box>
+  
   </Box>
   );
 }

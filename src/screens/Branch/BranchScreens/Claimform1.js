@@ -1,17 +1,18 @@
 import React, { useState, useContext } from 'react';
 import { useClaimFormContext } from '../../../context-stores/CliamContext';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // material ui imports
 import  Container  from '@mui/material/Container';
 import  Box  from '@mui/material/Box';
-import { Button, Typography } from '@mui/material'
+import {  Typography } from '@mui/material'
 import ArrowDropUpTwoToneIcon from '@mui/icons-material/ArrowDropUpTwoTone';
 import TextField from '@mui/material/TextField';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { width } from '@mui/system';
+import { ListItemButton, ListItemText } from '@mui/material';
+
 
 export default function Claimform1() {
+    const navigate =useNavigate();
 const [loading, setLoading] = React.useState(false);
   function handleClick() {
     setLoading(true);
@@ -46,28 +47,7 @@ const [loading, setLoading] = React.useState(false);
     }
 
     return (
-        // <div style={{ background: '#000' }}>
-        //     <h1>Cliam Form 1</h1>
-        //     <form onSubmit={handleSubmit}>
-        //         <label htmlFor="vehicle_reg" >Enter Car Registration
-        //             <input id="vehicle_reg" style={{ background: '#ece5dd' }} type="text" value={vehicle_registration} onChange={e => setVehicleRegistration(e.target.value)} />
-        //             <input type="submit" value="Submit" />
-        //         </label>
-        //     </form>
-        //     <div style={{ color: 'white' }}>
-        //         {holders_name &&
-        //             <div>
-        //                 <h1>Name: {holders_name}</h1>
-        //             </div>
-        //         }
-        //         {tell_no &&
-        //             <div>
-        //                 <h1>Tell No: {tell_no}</h1>
-        //             </div>
-        //         }
-        //     </div>
-        //     <Link to="/claimform2">Next</Link>
-        // </div>
+        
 <Container
 sx={{
     display:"flex",
@@ -390,19 +370,24 @@ mt:"2%"
  
     {/* end of box */}
     </Box> 
- <Button
-    sx={{ 
-    width:'150px',
-    height:'50px',
-    ml:"50%",
-    mt:"-2%",
-    background:"#075e54",
-    alignItems:"center",
-    justifyContent:"center",
-    fontSize:"15px",
-   }}> 
-   <Link to="/claimform2">Next</Link>
-  </Button>
+<Box sx={{
+   display:"flex",
+   width:"150px",
+   height:"5vh",
+   ml:"45%"
+ }}>
+    
+    <ListItemButton 
+     onClick={()=> navigate("/claimform2")}
+     >
+      <ListItemText 
+      primary="Next"
+      sx={{alignItems:"center",justifyContent:'center'}}
+      />
+    </ListItemButton>
+
+ </Box>
+ 
 
 </Container>
     )

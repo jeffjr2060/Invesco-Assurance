@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import FormTextInput from '../Re-usable component/Formtextinput';
 import { useForm } from "react-hook-form";
 import { Button } from '@material-ui/core';
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+import { ListItem, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import FormFileInput from '../Re-usable component/Formfileinput';
 
+
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+
  function ClaimForm7() {
+  const navigate = useNavigate ();
     const { handleSubmit, reset, control } = useForm()
     
     return (
@@ -50,13 +56,26 @@ import FormFileInput from '../Re-usable component/Formfileinput';
                
             </form>
             <Box sx={{ml:"55%",mt:"-2%",flexDirection:"row",}}>
-            <Link to="/claimform5" >Previous</Link>  
-             <Link to="/claimform7">Next</Link>
             </Box>
            
         </div>
 
+ <Box sx={{
+   display:"flex",
+   width:"100%",
+   height:"5vh",
+   alignItems:"center",
+   justifyContent:'center',
+ }}>
+    <ListItemButton onClick={()=> navigate("/claimform6") }>
+       <ListItemText primary="Previous" />
+    </ListItemButton>
 
+    <ListItemButton onClick={()=> navigate("/claimform8")}>
+      <ListItemText primary="Next" />
+    </ListItemButton>
+
+ </Box>
    
   </Box>
 
