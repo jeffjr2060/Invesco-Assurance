@@ -10,74 +10,81 @@ import { Link } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import FormFileInput from '../Re-usable component/Formfileinput';
+import TextField from "@material-ui/core/TextField";
+import { useClaimFormContext } from '../../../context-stores/CliamContext';
 
 
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
- function ClaimForm7() {
-  const navigate = useNavigate ();
-    const { handleSubmit, reset, control } = useForm()
-    
-    return (
- <Box
-     component="main"
-     sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
- >
-  <AppBar
-     position="fixed"
-    sx={{ width: "100%",
-    background:"#fff",
-  }}>
-    <Toolbar>
-  <Typography variant="h6" noWrap component="div">
-    
-  </Typography>
-   </Toolbar>
-   </AppBar>
+function ClaimForm7() {
+  const navigate = useNavigate();
+  const { handleSubmit, reset, control } = useForm()
 
- 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
-        <div style={{ height: 350,
-              width: '60%',
-               marginLeft:"20%", 
-               marginTop:"1%", }}>
-            
-            <form
-             onSubmit={handleSubmit}
-             style={{display:"flex",flexDirection:"column", height:"80%", marginTop:"60px"}}
-             >
-               
-                <FormFileInput  control={control} name="copy_notice" label="Copy Notice"/>
-                <FormFileInput control={control} name="police_abstract" label="Police Abstract" />
-                <FormFileInput control={control} name="drivers_license" label="Drivers License" />
-                <FormFileInput control={control} name="psv_license" label="PSV Lisence" />
-                <FormFileInput control={control} name="inspection_report" label="Inspection Report" />
-               
-            </form>
-            <Box sx={{ml:"55%",mt:"-2%",flexDirection:"row",}}>
-            </Box>
-           
-        </div>
+  return (
+    <Box
+      component="main"
+      sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+    >
+      <AppBar
+        position="fixed"
+        sx={{
+          width: "100%",
+          background: "#fff",
+        }}>
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
 
- <Box sx={{
-   display:"flex",
-   width:"100%",
-   height:"5vh",
-   alignItems:"center",
-   justifyContent:'center',
- }}>
-    <ListItemButton onClick={()=> navigate("/claimform6") }>
-       <ListItemText primary="Previous" />
-    </ListItemButton>
+          </Typography>
+        </Toolbar>
+      </AppBar>
 
-    <ListItemButton onClick={()=> navigate("/claimform8")}>
-      <ListItemText primary="Next" />
-    </ListItemButton>
+      <div style={{
+        height: 350,
+        width: '60%',
+        marginLeft: "20%",
+        marginTop: "1%",
+      }}>
 
- </Box>
-   
-  </Box>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column", height: "80%", marginTop: "60px" }}
+        >
+
+          <FormFileInput control={control} name="copy_notice" label="Copy Notice" />
+          <FormFileInput control={control} name="police_abstract" label="Police Abstract" />
+          <FormFileInput control={control} name="drivers_license" label="Drivers License" />
+          <FormFileInput control={control} name="psv_license" label="PSV Lisence" />
+          <FormFileInput control={control} name="inspection_report" label="Inspection Report" />
+
+        </form>
+        <Box sx={{ ml: "55%", mt: "-2%", flexDirection: "row", }}>
+        </Box>
+
+      </div>
+
+      <Box sx={{
+        display: "flex",
+        width: "100%",
+        height: "5vh",
+        alignItems: "center",
+        justifyContent: 'center',
+      }}>
+        <ListItemButton onClick={() => navigate("/claimform6")}>
+          <ListItemText primary="Previous" />
+        </ListItemButton>
+
+        <ListItemButton onClick={() => navigate("/claimform8")}>
+          <ListItemText primary="Next" />
+        </ListItemButton>
+
+      </Box>
+
+    </Box>
 
 
 
@@ -85,7 +92,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 
 
-    );
+  );
 }
 
 export default ClaimForm7

@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useReducer } from 'react';
 import { Controller, useForm } from "react-hook-form";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ClaimFormContext = React.createContext();
 
@@ -9,50 +10,63 @@ export function useClaimFormContext() {
 }
 
 export default function ClaimFormContextProvider({ children }) {
-    // const [policy_data, setPolicy] = useState({});
-    //react hook form
-    const { handleSubmit, reset, control, ref } = useForm({
+
+    const [req_one_data, setReqOneData] = useState(null);
+
+    const [collateral_damage, setCollateralDamage] = useState([]);
+    const [persons_injured, setPersonsInjured] = useState([]);
+    const [independent_witnesses, setIndependentWitnesses] = useState([]);
+    const [passengers, setPassengers] = useState([]);
+
+    const [copy_notice, setCopyNotice] = useState();
+    const [police_abstract, setPoliceAbstract] = useState();
+    const [drivers_license, setDriversLicense] = useState();
+    const [psv_license, setPsvLicense] = useState();
+    const [inspection_report, setInspectionReport] = useState();
+
+    const { handleSubmit, reset, control } = useForm({
         defaultValues: {
             accident_blame: "",
             accident_liability: "",
             apparent_damages: "",
-            chassis_no: "SV30-0169266",
+            chassis_no: "",
             condition: "",
-            date_of_accident: new Date(Date.now()),
+            date_time_of_accident: new Date(Date.now()),
             date_of_issue: new Date(Date.now()),
             drivers_dob: new Date(Date.now()),
             drivers_name: "",
             drivers_occupation: "",
-            drivers_po_box: "",
+            drivers_po_box: 0,
             drivers_policy_no: "",
-            drivers_tell_no: "",
-            drivers_po_code: "",
-            driving_duration: "",
+            drivers_statement: "",
+            drivers_tell_no: 0,
+            drivers_po_code: 0,
+            driving_duration: 0,
             employed_by_policyholder: "",
-            estimated_speed: "",
+            estimated_speed: 0,
             expiry_date: new Date(Date.now()),
             garage_address: "",
             garage_name: "",
             garage_telno: "",
             goods_carried: "",
-            hire_purchase_company: "T.B.A",
-            holders_address: "Nakuru",
-            holders_name: "Benson Kariuki",
+            hire_purchase_company: "",
+            holders_address: "",
+            holders_name: "",
             hp_cc: 1500,
             inspection_location: "",
             inspection_date: new Date(Date.now()),
             insurers_address: "",
             insurers_name: "",
             license_holder: "",
-            license_number: "",
+            license_number: 0,
             lights: "",
-            load_weight: "",
-            make_model: "TOYOTA HIACE",
+            load_weight: 0,
+            make_model: "",
             manufacture_year: new Date(Date.now()),
-            occupation: "Businessman",
+            occupation: "",
             owner_of_goods: "",
-            owners_address: "Nakuru",
-            owners_name: "Benson Kariuki",
+            owners_address: "",
+            owners_name: "",
             owns_vehicle: "",
             permission: "",
             place: "",
@@ -61,22 +75,24 @@ export default function ClaimFormContextProvider({ children }) {
             police_officers_station: "",
             police_officers_no: "",
             police_stations: "",
-            policy_number: "077/084/1/000202/2010/09",
+            policy_holders_statement: "",
+            policy_number: "",
             prev_accident_details: "",
             prev_accidents: "",
             prev_conviction_details: "",
             prev_convictions: "",
+            reporting_branch_region: "",
+            reporting_party: "",
             road_surface: "",
-            service_duration: "",
-            tell_no: "0722774531",
-            time_of_accident: new Date(Date.now()),
+            service_duration: 0,
+            tell_no: "",
             trailer_attached: "",
             trailer_capacity: 0,
-            trailer_registration: "N/A",
-            trailer_weight: "",
+            trailer_registration: "",
+            trailer_weight: 0,
             use_of_vehicle: "",
-            vehicle_capacity: 14,
-            vehicle_registration: "KAQ 057C",
+            vehicle_capacity: 0,
+            vehicle_registration: "",
             vehicle_still_used: "",
             visibility: "",
             warning_signs: "",
@@ -90,13 +106,14 @@ export default function ClaimFormContextProvider({ children }) {
     const [holders_address, setholders_address] = useState('');
     const [holders_occupation, setholders_occupation] = useState('');
     const [policy_number, setpolicy_number] = useState('');
-    const [expiry_date, setexpiry_date] = useState('');
+    const [expiry_date, setexpiry_date] = useState(null);
     const [hire_purchase_company, sethire_purchase_company] = useState('');
+    const navigate = useNavigate();
 
     //vehicles details
     const [make_model, setmake_model] = useState('');
     const [hp_cc, sethp_cc] = useState('');
-    const [manufacture_year, setmanufacture_year] = useState('');
+    const [manufacture_year, setmanufacture_year] = useState(null);
     const [vehicle_registration, setvehicle_registration] = useState('');
     const [vehicle_capacity, setvehicle_capacity] = useState('');
     const [trailer_registration, settrailer_registration] = useState('');
@@ -119,7 +136,7 @@ export default function ClaimFormContextProvider({ children }) {
             Periodto: new Date(2023, 1, 1),
             Hirepurchase: 'T.B.A',
             Make: 'TOYOTA HIACE',
-            Yearofmanufacture: new Date(2005, 1, 1),
+            Yearofmanufacture: 2005,
             carryingCapacity: 14,
             TrailerRegno: 'N/A',
             chasisno: 'SV30-0169266'
@@ -200,7 +217,65 @@ export default function ClaimFormContextProvider({ children }) {
             chassis_no: chasis_no,
         }
         console.log(payload);
-        axios.post('/newclaim', payload).then(response => console.log(response.data))
+        setReqOneData({ ...payload });
+        navigate('/claimform3');
+    }
+
+    const submitData = () => {
+        axios.post('/newclaim', req_one_data).then(response => {
+            let data = response.data
+            console.log(data.Claim_id);
+            let payload = {
+                collateral_damage: collateral_damage,
+                persons_injured: persons_injured,
+                independent_witnesses: independent_witnesses,
+                passengers: passengers,
+            }
+            let cliam_id = data.Claim_id
+            console.log(payload);
+            axios.post(`claimdata/${cliam_id}`, payload).then(response => {
+                let data = response.data;
+            });
+
+            const formdata = new FormData();
+            formdata.append("file_type", "copy_notice");
+            formdata.append("file", copy_notice);
+
+            axios.post(`/file-upload/${cliam_id}`, formdata).then((response) => {
+                console.log(response.data);
+
+                const formdata2 = new FormData();
+                formdata2.append("file_type", "police_abstract");
+                formdata2.append("file", police_abstract);
+                axios.post(`/file-upload/${cliam_id}`, formdata2).then((response) => {
+                    console.log(response.data);
+                })
+
+                const formdata3 = new FormData();
+                formdata3.append("file_type", "drivers_license");
+                formdata3.append("file", drivers_license);
+                axios.post(`/file-upload/${cliam_id}`, formdata3).then((response) => {
+                    console.log(response.data);
+                })
+
+                const formdata4 = new FormData();
+                formdata4.append("file_type", "psv_license");
+                formdata4.append("file", drivers_license);
+                axios.post(`/file-upload/${cliam_id}`, formdata4).then((response) => {
+                    console.log(response.data);
+                })
+
+                const formdata5 = new FormData();
+                formdata5.append("file_type", "inspection_report");
+                formdata5.append("file", inspection_report);
+                axios.post(`/file-upload/${cliam_id}`, formdata5).then((response) => {
+                    console.log(response.data);
+                })
+            })
+
+            alert('Uploaded data successfully')
+            navigate("/branchhome")
+        });
     }
 
     const clearStates = () => {
@@ -227,6 +302,39 @@ export default function ClaimFormContextProvider({ children }) {
     const value = {
         autofillfunc: autofill,
         clearStates: clearStates,
+        submitData: submitData,
+
+        //collateral_damage state
+        collateral_damage: collateral_damage,
+        setCollateralDamage: setCollateralDamage,
+
+        //Persons Injured State
+        persons_injured: persons_injured,
+        setPersonsInjured: setPersonsInjured,
+
+        //Independent Witnesses State
+        independent_witnesses: independent_witnesses,
+        setIndependentWitnesses: setIndependentWitnesses,
+
+        //Passengers in vehicle state
+        passengers: passengers,
+        setPassengers: setPassengers,
+
+        //file upload states
+        copy_notice: copy_notice,
+        setCopyNotice: setCopyNotice,
+
+        police_abstract: police_abstract,
+        setPoliceAbstract: setPoliceAbstract,
+
+        drivers_license: drivers_license,
+        setDriversLicense: setDriversLicense,
+
+        psv_license: psv_license,
+        setPsvLicense: setPsvLicense,
+
+        inspection_report: inspection_report,
+        setInspectionReport: setInspectionReport,
 
         // policy holder
         holders_name: holders_name,
@@ -255,7 +363,9 @@ export default function ClaimFormContextProvider({ children }) {
         control: control,
         handleSubmit: handleSubmit,
         onSubmit: onSubmit,
-        ref: ref
+
+        //Data submission
+        submitData: submitData,
     }
 
     return (

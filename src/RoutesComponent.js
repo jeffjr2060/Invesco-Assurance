@@ -66,6 +66,7 @@ export default function RoutesComponent() {
                 <Route path="/adminpanel" element={<Adminpanel />} />
                 <Route path="/claimform1" element={<Claimform1 />} />
                 <Route path="/claimform2" element={<ClaimForm2 />} />
+                <Route path="/claimform3" element={<ClaimForm3 />} />
                 <Route path="/claimdetails/:id" element={<Claimdetails />} />
                 <Route path="/claimnotification" element={<ClaimNotification />} />
                 <Route path="/intimation" element={<Intimationhome />} />
