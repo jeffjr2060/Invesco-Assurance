@@ -8,9 +8,6 @@ import Branchhome from './screens/Branch/BranchScreens/branchhome';
 import Intimationhome from './screens/Intimation/Screens/home';
 import Claimform from './screens/Branch/BranchComponent/Claimform';
 import ClaimNotification from './screens/Branch/BranchScreens/Claimnotification';
-
-
-
 import Form from './screens/Branch/BranchScreens/form';
 import Claimdetails from './screens/Branch/BranchComponent/claimdetails';
 import Test from './screens/Branch/BranchScreens/test';
@@ -31,6 +28,7 @@ import ClaimForm7 from './screens/Branch/BranchScreens/Claimform7';
 import ClaimForm8 from './screens/Branch/BranchScreens/ClaimForm8';
 import ClaimnotificatioReport from './screens/Branch/BranchComponent/ClaimnotificationReport';
 import BranchDocuments from './screens/Branch/BranchComponent/branchdocument';
+import Assignedpersonel from './screens/Intimation/Components/ScreenComponents/Assignpersonel';
 
 
 export default function RoutesComponent() {
@@ -87,7 +85,8 @@ export default function RoutesComponent() {
                 <Route path="/claimform7" element={<ClaimForm7 />} />  
                 <Route path="/claimform8" element={<ClaimForm8 />} />    
                 <Route path="/claimnotificatioreport" element={<ClaimnotificatioReport />} />                   
-                <Route path="/BranchDocuments" element={<BranchDocuments/>} />                                                                   
+                <Route path="/BranchDocuments" element={<BranchDocuments/>} />    
+                <Route path="/assignedpersonel" element={<Assignedpersonel/>} />                                                                 
 
             </Routes>
 

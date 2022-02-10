@@ -1,6 +1,6 @@
 import  React, {useState} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
         
 
 const columns = [
@@ -23,7 +23,7 @@ const rows = [
 ];
 
  function AssignedTable() {
-
+ const navigate =useNavigate();
 
 
   return (
@@ -33,6 +33,7 @@ const rows = [
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
+        onCellClick={()=>navigate("/claimform8")}
        
       />
     </div>

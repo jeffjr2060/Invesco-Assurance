@@ -242,7 +242,7 @@ function  ClaimForm8() {
    height:"5vh",
    marginTop:"-27px", 
    alignItems:"center",
-   justifyContent:'center',
+   justifyContent:'center'
  }}>
  <Claimformpaging />
  </Box>
